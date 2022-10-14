@@ -42,6 +42,9 @@ function intersectRect(r1, r2) {
 
 function updatePlayer(dt)
 {
+    //w is 87
+    //a is 65
+    //d is 68
     player.velocity.x = 3 * (!!keys[39] - !!keys[37]) // right - left
     player.velocity.y += 0.1 // Acceleration due to gravity
     
@@ -74,12 +77,15 @@ function updatePlayer(dt)
                     player.velocity.y=(BB_Platform.top - BB_Player.bottom)/4;//target = platformsArray[i];
                     //**************CHANGE TO ENGLISH*****************//
                     //alert("Hit box while falling");
-
+                    
                     updateScore();
                     translateWord();
 
 
-                }
+                } 
+            } else
+            {
+                platform.setAttributeNS(null, "stroke", "none");
             }
 
     //CHECK COLLISION FOR THE GROUND
@@ -87,7 +93,7 @@ function updatePlayer(dt)
     {
         player.velocity.y = ground.getBoundingClientRect().top-BB_Player.bottom;
         target = null;
-        
+       
         if(ground.position.y > 100) //IF GROUND IS ALREADY OFFSCREEN -> PLAYER DEAD
         {
             //RESET LEVEL

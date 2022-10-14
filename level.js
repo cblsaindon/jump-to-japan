@@ -2,6 +2,7 @@ var SVG; //MAIN SVG ELEMENT
 var w; //WIDTH OF THE SCREEN
 var h; //HEIGHT OF THE SCREEN
 var translationToggle = 1;
+var platformSpeed = 3;
 var ground; //GROUND ELEMENT
 //var roofX; //ROOF ELEMENT
 var score; //SCORE ELEMENT
@@ -14,12 +15,28 @@ var maxActivePlatforms = 1; //MAX PLATFORMS ON THE SCREEN -> DIFFICULTY
 var platformTextNative;
 var platformTextForeign;
 
+var activeBookNumber = 1;
+var activeBookWords;
+
+var playerScore = 0;
+//var activeBook = 1;
+
 var words = [];
-words[0] = { foreign: "Konnichiwa", native: "Hello"};
-words[1] = { foreign: "Arigatou gozaimasu", native: "Thank you"};
-words[2] = { foreign: "Sumimasen", native: "Excuse me"};
-words[3] = { foreign: "Hai", native: "Yes"};
-words[4] = { foreign: "iie", native: "No"};
+words[0] = { bookNumber: "1", foreign: "Konnichiwa", native: "Hello"};
+words[1] = { bookNumber: "1", foreign: "Arigatou gozaimasu", native: "Thank you"};
+words[2] = { bookNumber: "1", foreign: "Sumimasen", native: "Excuse me"};
+words[3] = { bookNumber: "1", foreign: "Hai", native: "Yes"};
+words[4] = { bookNumber: "1", foreign: "iie", native: "No"};
+words[5] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
+words[6] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
+words[7] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
+words[8] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
+words[9] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
+words[10] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
+words[11] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
+words[12] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
+words[13] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
+words[14] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
 
 function initLevel()
 {
@@ -33,7 +50,11 @@ function initLevel()
 
     createLevel(); //CREATE LEVEL
     score();
+    changeBook(1);
 }
+
+
+
 
 function toggleTranslate()
 {
@@ -42,6 +63,14 @@ function toggleTranslate()
     } else { //**** ENGLISH ***//
         translationToggle = 0;
     }
+}
+
+function changePlatformSpeed()
+{
+    
+    platformSpeed = document.getElementById("speedSlider").value;
+    platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
+    //alert(platformSpeed);
 }
 
 function createLevel()
@@ -66,7 +95,7 @@ function createLevel()
             platform.setAttributeNS(null,"font-size",w/20);  //WIDTH
 
             platform.position = { x: 0, y: 0 }; //TRANSFORM VALUE OF THE PLATFORM
-            platform.velocity = { x: 3, y: 0 }; //VELOCITY OF THE PLATFORM
+            platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
     
             level.appendChild(platform); //PUT THE PLATFORM INSIDE THE "level" GROUP
 
@@ -78,14 +107,15 @@ function getRandomInt(max) {
     return Math. floor(Math. random() * max);
 }
 
+
+
 function setPlatform()
 {
-
     //SET A NEW RANDOM PLATFORM POSITION 
-    var randomInt = getRandomInt(4);
+    var randomInt = getRandomInt(5);
 
-    platformTextForeign = words[randomInt].foreign;
-    platformTextNative = words[randomInt].native;
+    platformTextForeign = activeBookWords[randomInt].foreign;
+    platformTextNative = activeBookWords[randomInt].native;
 
     if (translationToggle == 0) { //**** JAPANESE ***//
         platform.textContent = platformTextForeign; 
@@ -93,23 +123,31 @@ function setPlatform()
     } else { //**** ENGLISH ***//
         platform.textContent = platformTextNative; 
         platform.setAttributeNS(null,"fill","#FFFFFF"); //FILLCOLOR
+
+        //platform.setAttributeNS(null, "stroke", style["border-top-color"]);
     }
 
     platform.position.y = (h/10); //SET Y POSITION
     platform.position.x = (w/2);//SET RANDOM START POSITION X RIGHT; the higher, the more right ex. 800
 
-    platform.velocity.x = 3;//Math.random()*4+1;//SET RANDOM START VELOCITY
+    //platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
+    //platform.velocity.x = 3;//Math.random()*4+1;//SET RANDOM START VELOCITY
 
     activePlatforms +=1;
 }
 
 function translateWord() {
+
     if (translationToggle == 0) { //**** ENGLISH ***//
         platform.textContent = platformTextNative; 
         platform.setAttributeNS(null,"fill","#FFFFFF"); //FILLCOLOR
+        platform.setAttributeNS(null, "stroke", "#FFFFFF");
+
     } else { //**** JAPANESE ***//
         platform.textContent = platformTextForeign;
         platform.setAttributeNS(null,"fill","#000000"); //FILLCOLOR 
+        platform.setAttributeNS(null, "stroke", "#000000");
+        
     }
 }
 
@@ -125,8 +163,7 @@ function score()
         score.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
         score.textContent ="0";  //TEXT
         score.current = 0; //CURRENT SCORE
-
-        
+   
         SVG.appendChild(score) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
@@ -134,7 +171,8 @@ function updateScore()
 {
         
         score.current += 1; //ADD TO SCORE
-
+        playerScore =+ 1;
+        moveProgress();
         score.textContent =Math.round(score.current);  //UPDATE SCORE
         document.getElementById("scoreLabel").textContent = score.current;
 }
@@ -153,7 +191,6 @@ function updateLevel(dt)
             //platform.position.y = (Math.random()*100)*-1; //PUT IT BACK ON TOP
             //platform.velocity.x = Math.random()*4+1; //SET NEW VELOCITY
         }
-        
         
         platform.position.x -= platform.velocity.x * dt * 60/1000;//GET THE NEW X POSITION
         platform.position.y -= platform.velocity.y * dt * 60/1000;//GET THE NEW X POSITION
