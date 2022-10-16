@@ -162,18 +162,7 @@ function translateWord() {
 
 function score()
 {
-    var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
-    
-        score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
-        score.setAttributeNS(null,"x",w-60); //START X 
-        score.setAttributeNS(null,"y",h/2-110);    //START Y
-        score.setAttributeNS(null,"fill","white"); //FILLCOLOR
-        score.setAttributeNS(null,"font-family","helvetica"); //FONT
-        score.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
-        score.textContent ="0";  //TEXT
         score.current = 0; //CURRENT SCORE
-   
-        SVG.appendChild(score) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
 function updateScore()
