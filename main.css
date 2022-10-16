@@ -55,14 +55,14 @@ html, body {
   background: var(--bg);
   color: var(--fontColor);
   font-family: helvetica;
-  overflow: scroll;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
 #SVG_scene
 {
   min-width:100%;
-  min-height:250px;
+  min-height:100%;
   background-color:#5ea8ed;
 }
 
