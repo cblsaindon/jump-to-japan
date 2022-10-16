@@ -27,16 +27,24 @@ words[1] = { bookNumber: "1", foreign: "Arigatou gozaimasu", native: "Thank you"
 words[2] = { bookNumber: "1", foreign: "Sumimasen", native: "Excuse me"};
 words[3] = { bookNumber: "1", foreign: "Hai", native: "Yes"};
 words[4] = { bookNumber: "1", foreign: "iie", native: "No"};
-words[5] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
-words[6] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
-words[7] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
-words[8] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
-words[9] = { bookNumber: "2", foreign: "xxx", native: "yyy"};
-words[10] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
-words[11] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
-words[12] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
-words[13] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
-words[14] = { bookNumber: "3", foreign: "ooo", native: "ppp"};
+words[5] = { bookNumber: "2", foreign: "Kippu", native: "Ticket"};
+words[6] = { bookNumber: "2", foreign: "Shinkansen", native: "Bullet train"};
+words[7] = { bookNumber: "2", foreign: "Basu", native: "Bus"};
+words[8] = { bookNumber: "2", foreign: "Eki", native: "Train station"};
+words[9] = { bookNumber: "2", foreign: "Mighi", native: "Right"};
+words[10] = { bookNumber: "2", foreign: "Hidari", native: "Left"};
+words[11] = { bookNumber: "3", foreign: "Hare", native: "Sunny"};
+words[12] = { bookNumber: "3", foreign: "Sakura", native: "Cherry blossom"};
+words[13] = { bookNumber: "3", foreign: "Sakana", native: "Fish"};
+words[14] = { bookNumber: "3", foreign: "Yama", native: "Mountain"};
+words[15] = { bookNumber: "3", foreign: "山", native: "Mountain"};
+words[16] = { bookNumber: "3", foreign: "Ame", native: "Rain"};
+words[17] = { bookNumber: "3", foreign: "雨", native: "Rain"};
+
+var books = [];
+books[0] = { id: "1", name: "Essentials"};
+books[1] = { id: "2", name: "Travel"};
+books[2] = { id: "3", name: "Nature"};
 
 function initLevel()
 {
@@ -112,7 +120,8 @@ function getRandomInt(max) {
 function setPlatform()
 {
     //SET A NEW RANDOM PLATFORM POSITION 
-    var randomInt = getRandomInt(5);
+    var randomInt = getRandomInt(activeBookWords.length);
+    
 
     platformTextForeign = activeBookWords[randomInt].foreign;
     platformTextNative = activeBookWords[randomInt].native;
@@ -170,9 +179,16 @@ function score()
 function updateScore()
 {
         
-        score.current += 1; //ADD TO SCORE
-        playerScore =+ 1;
-        moveProgress();
+
+        if (powerupActiveOne == false) {
+            moveProgress("up");
+            score.current += 1; //ADD TO SCORE
+            playerScore =+ 1;
+        } else {
+            moveProgress("down");
+            score.current += 9001; //ADD TO SCORE
+            playerScore =+ 9001;
+        }
         score.textContent =Math.round(score.current);  //UPDATE SCORE
         document.getElementById("scoreLabel").textContent = score.current;
 }
@@ -185,8 +201,9 @@ function updateLevel(dt)
         setPlatform();
     }
     
-        if(platform.position.x < (w/2)*-1)//BLOCK IS OUT OF SCREEN
+        if((platform.position.x + (platform.getBBox().width)) < (w/2)*-1)//BLOCK IS OUT OF SCREEN
         {
+            //alert(platform.getBBox().width);
             activePlatforms -=1;
             //platform.position.y = (Math.random()*100)*-1; //PUT IT BACK ON TOP
             //platform.velocity.x = Math.random()*4+1; //SET NEW VELOCITY

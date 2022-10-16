@@ -4,239 +4,77 @@
     --black: #000000;
 }
 
-body {
-    background: var(--bg);
-    color: var(--fontColor);
-    font-family: helvetica;
+.powerupButton.disabled {
+  background-color: #a8baca !important;
+  pointer-events:none;
 }
 
-li {
-    list-style: circle;
-}
-
-
-
-.list {
-    list-style: square;
+.powerupButton.enabled {
+  background-color: #5ea8ed !important;
 }
 
 .light-theme {
-    --bg: var(--orange);
-    --fontColor: var(--black);
-    --btnBg: var(--black);
-    --btnFontColor: var(--white);
+  --bg: var(--orange);
+  --fontColor: var(--black);
+  --btnBg: var(--black);
+  --btnFontColor: var(--white);
 }
 .dark-theme {
-    --bg: var(--black);
-    --fontColor: var(--orange);
-    --btnBg: var(--white);
-    --btnFontColor: var(--black);
+  --bg: var(--black);
+  --fontColor: var(--orange);
+  --btnBg: var(--white);
+  --btnFontColor: var(--black);
 }
 
 .btn {
-    position: absolute;
-    top: 20px;
-    left: 250px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: none;
-    color: var(--btnFontColor);
-    background-color: var(--btnBg);
+  position: absolute;
+  top: 20px;
+  left: 250px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  color: var(--btnFontColor);
+  background-color: var(--btnBg);
 }
 
-
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width:100%;
-    background-color: #5ea8ed;
-    overflow: hidden;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none; 
-    -khtml-user-select: none; 
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;   
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width:100%;
+  background-color: #5ea8ed;
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;   
+  background: var(--bg);
+  color: var(--fontColor);
+  font-family: helvetica;
 }
 
 #SVG_scene
 {
-    min-width:100%;
-    min-height:100%;
-    max-height:1000px;
-    background-color:#5ea8ed;
+  min-width:100%;
+  min-height:100%;
+  background-color:#5ea8ed;
 }
 
 /* The switch - the box around the slider */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-
-  /********/
-
-  .speedContainer {
-    width: 100%; /* Width of the outside container */
-  }
-  
-  /* The slider itself */
-  .speedSlider {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 100%; /* Full-width */
-    height: 15px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
-  
-  }
-  
-  /* Mouse-over effects */
-  .speedSlider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
-  
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  .speedSlider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-    border-radius: 50%;
-  }
-  
-  .speedSlider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-    border-radius: 50%;
-  }
-
-
-
-  /* Popup container */
-.popup {
-  /*position: relative;*/
+  position: relative;
   display: inline-block;
-  cursor: pointer;
-  position: fixed;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  
-
+  width: 60px;
+  height: 34px;
 }
 
-/* The actual popup (appears on top) */
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
-
-}
-
-
-/* Popup arrow 
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-*/
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeinout 5s linear forwards;
-  animation: fadeinout 5s linear forwards;
+/* Hide default HTML checkbox */
+.switch input {
   opacity: 0;
-
-}
-
-
-@-webkit-keyframes fadeinout {
-  50% { opacity: 1; }
-}
-
-@keyframes fadeinout {
-  50% { opacity: 1; }
+  width: 0;
+  height: 0;
 }

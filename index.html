@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jump to Japan</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="slider.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -34,7 +36,7 @@
 
              <!--Speed Slider-->
              <p>Speed:</p>
-             <div class="speedContainer">
+             <div class="speedContainer w3-padding-large">
                <input type="range" min="1" max="6" value="3" class="speedSlider" id="speedSlider" onchange=changePlatformSpeed()>
              </div>
 
@@ -43,60 +45,51 @@
 </div>
 <!--End of The Modal-->
 
-<!-- Navbar -->
-<div class="w3-top">
+  <!-- Large Navbar -->
+  <div class="w3-top">
 
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+
      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>1.0.1-alpha</a>
-     <div class="w3-dropdown-hover w3-hide-small" id="Demo">
-       <button class="w3-button w3-padding-large" title="Notifications" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+     <div class="w3-dropdown-hover" id="Demo">
+       <button class="w3-button w3-padding-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
        <div class="w3-dropdown-content w3-card-4 w3-bar-block" id="bookDropdown" style="width:300px">
-         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-1" onclick=playPopUp()>Book 1</a>
-         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-2">Book 2</a>
-         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-3">Book 3</a>
+         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-1">Essentials</a>
+         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-2">Travel</a>
+         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-3">Nature</a>
        </div>
      </div>
-     <!-- Trigger/Open the Modal -->
-     <button onclick="document.getElementById('id01').style.display='block'"
+     <!-- Settings page Trigger/Open the Modal -->
+     <button title="Settings" onclick="document.getElementById('id01').style.display='block'"
      class="w3-button w3-padding-large"><i class="fa fa-cog"></i></button>
      
 
-
-     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+     <!-- My Account -->
+     <a href="#" class="w3-bar-item w3-button w3-right w3-padding-large w3-hover-white" title="My Account">
        <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
      </a>
+
     </div>
-   </div>
-   
-   <!-- Navbar on small screens -->
-   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-     <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-   </div>    
+  </div> 
 
-    <ul>
-        <li class="list" id="listItem">Press the up arrow and catch the words</li>
-    </ul>
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">   
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:50px">   
 
-
-        <!-- Start Game Information Container -->
-        <div class="w3-container w3-card w3-white w3-round w3-margin w3-padding"><br>
+        <!-- 1. Start Game Information Container -->
+        <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
 
             <!--Score-->
-            <p>Score:
+            Score:
             <label class="yo" id="scoreLabel">0</label>
             Book:
-            <label class="yo2" id="bookLabel">0</label></p>
+            <label class="yo2" id="bookLabel">0</label>
             
+            <!--Pop up when book is selected-->
             <div class="popup">`
-              <span class="popuptext" id="myPopup">Book switched</span>
+              <span class="popuptext" id="myPopup"></span>
             </div>
             
+            <!--Progress Bar-->
             <div class="w3-light-grey">
               <div id="myBar" class="w3-container w3-blue w3-round" style="width:1%">1%</div>
             </div>
@@ -105,16 +98,31 @@
         </div>
         <!-- End Game Information Container -->
 
-        <!-- Start Game Container-->
+        <!-- 2. Start Game Container-->
         <div class="w3-row-padding">
           <div class="w3-col m12">
-            <div class="w3-card w3-round w3-white w3-container w3-padding" id="game-container">
+            <div class="w3-container w3-card w3-white w3-round w3-padding" id="game-container">
                  <h4>Catch the words to see the translation!</h4>
                  <svg id="SVG_scene" fill="red" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>                
             </div>
           </div>
         </div>
         <!-- End Game Container-->
+
+        <!-- 3. Start Powerup Container -->
+        <div class="w3-container w3-card w3-white w3-round w3-margin w3-padding"><br>
+
+          <label id="powerupMsg">Charging...</label><br>
+
+          <!--Start Powerup Buttons-->
+          <button class="w3-button powerupButton disabled" id="powerupButton">Powerup</button>
+          <!--End Powerup Buttons-->
+
+          <hr class="w3-clear">
+      </div>
+      <!-- End Game Information Container -->        
+
+
 
 </div>
     <script src="app.js"></script>
@@ -124,6 +132,8 @@
     <script src="controll.js"></script>
     <script src="requestAnimationFrame.js"></script>
     <script src="book.js"></script>
+    <script src="powerup.js"></script>
+    <script src="progressBar.js"></script>
     <noscript>You need to enable JavaScript to view the full site.</noscript>
 </body>
 </html>

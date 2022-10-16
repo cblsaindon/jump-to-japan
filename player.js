@@ -45,7 +45,18 @@ function updatePlayer(dt)
     //w is 87
     //a is 65
     //d is 68
-    player.velocity.x = 3 * (!!keys[39] - !!keys[37]) // right - left
+    //turn off the powerup if the progress bar is drained
+    if (progressWidth == 0) {
+        togglePowerup(false);
+    } 
+
+    if (powerupActiveOne == true)
+    {
+        player.velocity.x = 99 * (!!keys[39] - !!keys[37]) // right - left
+    } else {
+        player.velocity.x = 3 * (!!keys[39] - !!keys[37]) // right - left
+    }
+
     player.velocity.y += 0.1 // Acceleration due to gravity
     
     var nextY = player.position.y + player.velocity.y * dt * 60/1000; //GET THE NEXT POSSIBLE Y POSITION

@@ -1,4 +1,5 @@
 var bookMenuItemID = "";
+var progressWidth = 1;
 
 
 function hideBookMenu()
@@ -52,12 +53,18 @@ Array.from(bookMenuItems).forEach( bookMenuItem => {
   bookMenuItem.addEventListener('click', (e) => {
 
     bookMenuItemID = e.target.id; //FIND ELEMENT ID
-    var newBookNumber = bookMenuItemID.substring(5,6); //EXTRACT NUMBER
+    var newBookID = bookMenuItemID.substring(5,6); //EXTRACT NUMBER
 
     var popup = document.getElementById("myPopup");
-    popup.textContent = "Book changed to " + newBookNumber;
+    //alert(newBookID);
+    //TODO Get the book name from the books[] array
+    //var newBookName = books.find();
 
-    changeBook(newBookNumber);
+    const book = books.find(e => e.id == newBookID);
+
+    popup.textContent = "Book changed to " + book.name;
+
+    changeBook(newBookID);
     hideBookMenu();
     playPopUp();
   });  
@@ -96,42 +103,3 @@ function reset_animation() {
   el.style.animation = null; 
 }
 
-/////////////////////PROGRESS BAR///////////////////////
-
-var width = 1;
-
-function moveProgress() {
-  var elem = document.getElementById("myBar");
-  
-  if (width >= 100) {
-    //nothing
-  } else {
-    width++;
-    elem.style.width = width + '%';
-    elem.innerHTML = width * 1  + '%';
-  }
-}
-  //var id = setInterval(frame, 10);
-  //var id =
-  /*
-  function frame() {
-    if (width >= 100) {
-      clearInterval(id);
-    } else {
-      width++;
-      elem.style.width = width + '%';
-      elem.innerHTML = width * 1  + '%';
-    }
-  }
-  */
-
-
-function clearProgress() {
-  var elem = document.getElementById("myBar");
-
-  var id = setInterval(frame, 10);
-
-      clearInterval(id);
-
-  
-}
