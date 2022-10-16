@@ -45,7 +45,7 @@ html, body {
   border: 0;
   width:100%;
   background-color: #5ea8ed;
-  overflow: hidden;
+
   -webkit-touch-callout: none;
   -webkit-user-select: none; 
   -khtml-user-select: none; 
@@ -55,6 +55,8 @@ html, body {
   background: var(--bg);
   color: var(--fontColor);
   font-family: helvetica;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 #SVG_scene
