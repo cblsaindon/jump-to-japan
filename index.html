@@ -1,139 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jump to Japan</title>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="popup.css">
-    <link rel="stylesheet" href="slider.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-    html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jump to Japan</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/popup.css">
+  <link rel="stylesheet" href="css/slider.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+  </style>
 </head>
-<body class="w3-theme-l3" onload="init()">
 
-<!-- The Modal -->
-<div id="id01" class="w3-modal">
-  <div class="w3-modal-content">
-    <div class="w3-container w3-center">
-      <span onclick="document.getElementById('id01').style.display='none'"
-      class="w3-button w3-display-topright">&times;</span>
-        <h4>Settings and Accessibility</h4>
+<body class="light-theme" id="body" onload="init()">
 
-            <!-- Rounded switch -->
-            <p>Language order:</p>
-            <label class="switch">
-              <input type="checkbox" onchange=toggleTranslate()>
-              <span class="slider round"></span>
-            </label>
+  <!--The Settings & Accessibility Modal-->
+  <div id="settingsModal" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container w3-center containerSegment">
+        <span onclick="document.getElementById('settingsModal').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+          <h4>Settings and Accessibility</h4>
 
+        <!-- Rounded switch -->
+        <p>Language order:</p>
+        <label class="switch">
+          <input type="checkbox" onchange=toggleTranslate()>
+          <span class="slider round"></span>
+        </label>
 
-             <!--Speed Slider-->
-             <p>Speed:</p>
-             <div class="speedContainer w3-padding-large">
-               <input type="range" min="1" max="6" value="3" class="speedSlider" id="speedSlider" onchange=changePlatformSpeed()>
-             </div>
+        <!--Speed Slider-->
+        <p>Speed:</p>
+        <div class="speedContainer w3-padding-large">
+          <input type="range" min="1" max="6" value="3" class="speedSlider" id="speedSlider" onchange=changePlatformSpeed()>
+        </div>
 
+        <!-- Dark/light mode toggle -->
+        <p>Dark Mode:</p>
+        <div class="w3-padding-large">
+          <label class="switch">
+            <input type="checkbox" onchange=toggleTheme()>
+            <span class="slider round"></span>
+          </label>
+        </div>  
+        
+      </div>
     </div>
   </div>
-</div>
-<!--End of The Modal-->
 
   <!-- Large Navbar -->
   <div class="w3-top">
-
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
 
-     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>1.0.2-alpha</a>
-     <div class="w3-dropdown-hover" id="Demo">
-       <button class="w3-button w3-padding-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-       <div class="w3-dropdown-content w3-card-4 w3-bar-block" id="bookDropdown" style="width:300px">
-         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-1">Essentials</a>
-         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-2">Travel</a>
-         <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-3">Nature</a>
-       </div>
-     </div>
-     <!-- Settings page Trigger/Open the Modal -->
-     <button title="Settings" onclick="document.getElementById('id01').style.display='block'"
-     class="w3-button w3-padding-large"><i class="fa fa-cog"></i></button>
-     
+      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Jump to Japan</a>
 
-     <!-- My Account -->
-     <a href="#" class="w3-bar-item w3-button w3-right w3-padding-large w3-hover-white" title="My Account">
-       <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-     </a>
+      <!--Book Dropdown-->
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-padding-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+        <div class="w3-dropdown-content w3-card-4 w3-bar-block containerSegment" id="bookDropdown" style="width:300px">
+          <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-1">Essentials</a>
+          <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-2">Travel</a>
+          <a href="#" class="w3-bar-item w3-button bookMenuItem" id="book-3">Nature</a>
+        </div>
+      </div>
+
+      <!-- Settings & Accessibility Button -->
+      <button title="Settings" onclick="document.getElementById('settingsModal').style.display='block'"
+      class="w3-button w3-padding-large"><i class="fa fa-cog"></i></button>
+     
+      <!-- My Account -->
+      <a href="#" class="w3-bar-item w3-button w3-right w3-padding-large w3-hover-white" title="My Account">
+        <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+      </a>
 
     </div>
   </div> 
 
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:50px">   
+  <!-- Page Container -->
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:50px">   
 
-        <!-- 1. Start Game Information Container -->
-        <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+    <!-- 1. Game Information Container -->
+    <div class="w3-container w3-card w3-round w3-margin containerSegment"><br>
 
-            <!--Score-->
-            Score:
-            <label class="yo" id="scoreLabel">0</label>
-            Book:
-            <label class="yo2" id="bookLabel">0</label>
-            
-            <!--Pop up when book is selected-->
-            <div class="popup">`
-              <span class="popuptext" id="myPopup"></span>
-            </div>
-            
-            <!--Progress Bar-->
-            <div class="w3-light-grey">
-              <div id="myBar" class="w3-container w3-blue w3-round" style="width:1%">1%</div>
-            </div>
-
-            <hr class="w3-clear">
-        </div>
-        <!-- End Game Information Container -->
-
-        <!-- 2. Start Game Container-->
-        <div class="w3-row-padding">
-          <div class="w3-col m12">
-            <div class="w3-container w3-card w3-white w3-round w3-padding" id="game-container">
-                 <svg id="SVG_scene" fill="red" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>   
-                              
-            </div>
-          </div>
-        </div>
-        <!-- End Game Container-->
-
-        <!-- 3. Start Powerup Container -->
-        <div class="w3-container w3-card w3-white w3-round w3-margin w3-padding"><br>
-
-          <label id="powerupMsg">Charging...</label><br>
-
-          <!--Start Powerup Buttons-->
-          <button class="w3-button powerupButton disabled" id="powerupButton">Powerup</button>
-          <!--End Powerup Buttons-->
-
-          <hr class="w3-clear">
+      <!--Score-->
+      <div id="scorebook">
+        <b>Book:</b>
+        <label id="bookLabel">Essentials</label><br>
+        <b>Score:</b>
+        <label id="scoreLabel">0</label>
       </div>
-      <!-- End Game Information Container -->        
 
+      <!--Pop up when book is selected-->
+      <div class="popup">`
+        <span class="popuptext" id="myPopup"></span>
+      </div>
+            
+      <!--Progress Bar-->
+      <div class="">
+        <div id="myBar" class="w3-container w3-blue w3-round" style="width:1%">1%</div>
+      </div>
 
+      <hr class="w3-clear">
+      
+    </div>
 
-</div>
-    <script src="app.js"></script>
-    <script src="main.js"></script>
-    <script src="level.js"></script>
-    <script src="player.js"></script>
-    <script src="controll.js"></script>
-    <script src="requestAnimationFrame.js"></script>
-    <script src="book.js"></script>
-    <script src="powerup.js"></script>
-    <script src="progressBar.js"></script>
-    <noscript>You need to enable JavaScript to view the full site.</noscript>
+    <!-- 2. Game Container-->
+    <div class="w3-row-padding">
+      <div class="w3-col m12">
+        <div class="w3-container w3-card w3-round w3-padding containerSegment" id="game-container">
+          <svg id="SVG_scene" fill="red" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>               
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Start Powerup Container -->
+    <div class="w3-container w3-card w3-round w3-margin containerSegment"><br>
+      <!--Powerup Button-->
+      <button class="w3-button powerupButton disabled w3-round" id="powerupButton">Charging...</button>
+      <hr class="w3-clear">
+    </div>
+  </div>
+
+  <!--Script References-->
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/level.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/controll.js"></script>
+  <script src="js/requestAnimationFrame.js"></script>
+  <script src="js/book.js"></script>
+  <script src="js/powerup.js"></script>
+  <script src="js/progressBar.js"></script>
+  <script src="js/theme.js"></script>
+  <noscript>You need to enable JavaScript to view the full site.</noscript>
 </body>
 </html>

@@ -1,0 +1,105 @@
+:root {
+    --orange: #db831f;
+    --gold: #dbaf1f;
+    --white: #ffffff;
+    --black: #000000;
+    --lightgrey: #e7e7e7;
+    --darkgrey: #4e4e4e;
+    --darkblue: #264868;
+    --mediumblue:#5ea8ed;
+    --darkgreen: #264868;
+}
+
+.light-theme {
+  --bg: var(--lightgrey);
+  --fontColor: var(--black);
+  --btnBg: var(--black);
+  --btnBgEnabled: var(--gold);
+  --btnBgDisabled: var(--lightgrey);
+  --btnFontColor: var(--white);
+  --containerColor: var(--white);
+  --gameColor: var(--mediumblue);
+}
+
+.dark-theme {
+  --bg: var(--black);
+  --fontColor: var(--white);
+  --btnBg: var(--white);
+  --btnBgEnabled: var(--gold);
+  --btnBgDisabled: var(--black);
+  --btnFontColor: var(--black);
+  --containerColor: var(--darkgrey);
+  --gameColor: var(--darkblue);
+}
+
+.powerupButton.disabled {
+  background-color: var(--btnBgDisabled) !important;
+  pointer-events:none;
+}
+
+.powerupButton.enabled {
+  background-color: #f2ca45 !important;
+  background-color: var(--btnBgEnabled) !important;
+}
+
+.btn {
+  position: absolute;
+  top: 20px;
+  left: 250px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  color: var(--btnFontColor);
+  background-color: var(--btnBg);
+}
+
+html, body {
+  
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width:100%;
+  background-color: #5ea8ed;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;   
+  background: var(--bg);
+  color: var(--fontColor);
+  font-family: helvetica;
+  overflow: hidden;
+}
+
+.containerSegment {
+  background-color: var(--containerColor);
+
+}
+
+
+#SVG_scene
+{
+  min-width:100%;
+  min-height:100%;
+  background-color: var(--gameColor);
+
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
