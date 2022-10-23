@@ -107,7 +107,7 @@ function getRandomInt(max) {
 
 function setPlatform()
 {
-  //SET A NEW RANDOM PLATFORM POSITION 
+  //SET A NEW PLATFORM WITH A RANDOM WORD 
   var randomInt = getRandomInt(activeBookWords.length); 
 
   platformTextJapanese = activeBookWords[randomInt].japanese;

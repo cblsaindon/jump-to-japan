@@ -1,7 +1,8 @@
 var player; //PLAYER ELEMENT
 var target; //CURRENT PLATFORM
     
-
+//TODO: Clean createPlayer function
+//needs to be split up
 
 function initPlayer()
 {
