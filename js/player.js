@@ -1,15 +1,14 @@
 var player; //PLAYER ELEMENT
 var target; //CURRENT PLATFORM
     
-//TODO: Clean createPlayer function
-//needs to be split up
+//TODO: CLEAN AND SPLIT CREATE PLAYER FUNCTION. TOO COMPLEX!
 
 function initPlayer()
 {
   createPlayer(); //CREATE THE PLAYER
 }
 
-function createPlayer()
+function createPlayer() //THE PLAYER GETS DRAWN, UPDATED, AND CHECKED FOR COLLISIONS
 {
   var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
 

@@ -1,6 +1,8 @@
 var powerupActiveOne = false;
 
-function togglePowerupState(isReady)
+//TODO: ARGUMENTS NEED TO BE FIXED, CONFUSING
+
+function togglePowerupState(isReady) //ALLOWS THE USER TO CLICK OR NOT CLICK THE POWER-UP DEPENDING ON THE CHARGING STATUS
 {
   var e = document.getElementById("powerupButton");
   if (powerupReady == true) { //make sure it can be clicked and give it a good format
@@ -10,7 +12,7 @@ function togglePowerupState(isReady)
   }
 }
 
-function togglePowerup(isStart)
+function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
 {
   //only able to activate the powerup feature when the progress bar is full
   if (isStart == true && progressWidth == 100)

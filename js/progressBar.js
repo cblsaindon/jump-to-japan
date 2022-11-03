@@ -1,7 +1,8 @@
 /////////////////////PROGRESS BAR///////////////////////
 var powerupReady = false;
 
-function moveProgress(direction) {
+function moveProgress(direction) //FILLS IN OR SUBTRACTS FROM THE PROGRESS BAR DEPENDING ON THE POWER-UP STATE
+{
     //var elem = document.getElementById("myBar").visibility = "visible";
 
     var elem = document.getElementById("myBar");
@@ -30,7 +31,8 @@ function moveProgress(direction) {
   }
   
   
-  function clearProgress() {
+  function clearProgress() //BRINGS THE PROGRESSBAR BACK TO 0$
+  {
     var elem = document.getElementById("myBar");
     var id = setInterval(frame, 10);
     clearInterval(id);  

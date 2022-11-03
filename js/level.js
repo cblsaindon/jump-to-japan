@@ -20,6 +20,8 @@ var playerScore = 0;
 
 var translationToggle = 1;
 
+//TODO: MOVE TO FAUNA DATABASE
+
 var words = [];
 words[0] = { bookNumber: "1", japanese: "Konnichiwa", english: "Hello"};
 words[1] = { bookNumber: "1", japanese: "Arigatou gozaimasu", english: "Thank you"};
@@ -45,7 +47,7 @@ books[0] = { id: "1", name: "Essentials"};
 books[1] = { id: "2", name: "Travel"};
 books[2] = { id: "3", name: "Nature"};
 
-function initLevel()
+function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND BOOK DATA
 {
   SVG = document.getElementById("SVG_scene"); //GET SVG ELEMENT
 
@@ -58,7 +60,7 @@ function initLevel()
   changeBook(1);
 }
 
-function toggleTranslate()
+function toggleTranslate() //SWITCHES JAPANESE AND ENGLISH BOOLEAN
 {
   if (translationToggle == 0) { //**** JAPANESE ***//
     translationToggle = 1;
@@ -67,13 +69,13 @@ function toggleTranslate()
   }
 }
 
-function changePlatformSpeed()
+function changePlatformSpeed() //ADJUST WORD SPEED BASED ON THE SETTINGS SLIDER
 {    
   platformSpeed = document.getElementById("speedSlider").value;
   platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
 }
 
-function createLevel()
+function createLevel() //DRAWS THE SVG CONTAINER, GROUND, AND WORD
 {
   var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
   var level = document.createElementNS(svgNS,"g"); //CREATE A GROUP FOR THE ENTIRE LEVEL
@@ -99,15 +101,15 @@ function createLevel()
   SVG.appendChild(level) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
-function getRandomInt(max) {
+function getRandomInt(max) //PROVIDES A RANDOM INTEGER FOR RANDOMIZING WORDS
+{
   return Math. floor(Math. random() * max);
 }
 
 
 
-function setPlatform()
+function setPlatform() //DRAWS A NEW RANDOMIZED WORD
 {
-  //SET A NEW PLATFORM WITH A RANDOM WORD 
   var randomInt = getRandomInt(activeBookWords.length); 
 
   platformTextJapanese = activeBookWords[randomInt].japanese;
@@ -127,7 +129,8 @@ function setPlatform()
   activePlatforms +=1;
 }
 
-function translateWord() {
+function translateWord() //TOGGLES THE WORD TO JAPANESE OR ENGLISH
+{
   if (translationToggle == 0) { //**** ENGLISH ***//
     platform.textContent = platformTextEnglish; 
     platform.setAttributeNS(null,"fill","#FFFFFF"); //FILLCOLOR
@@ -140,12 +143,12 @@ function translateWord() {
   }
 }
 
-function score()
+function score() //TODO: REMOVE
 {
   score.current = 0; //CURRENT SCORE
 }
 
-function updateScore()
+function updateScore() //INCREASES THE SCORE
 {
   if (powerupActiveOne == false) {
     moveProgress("up");
@@ -160,7 +163,7 @@ function updateScore()
     document.getElementById("scoreLabel").textContent = score.current;
 }
 
-function updateLevel(dt)
+function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT FALLS OFF THE SCREEN, REPOSITIONS IT BACK TO THE RIGHT
 {
   //UPDATE LEVEL ON EACH FRAME AND GET FRAMETIME "dt"
   if(activePlatforms < maxActivePlatforms) // SET PLATFORMS

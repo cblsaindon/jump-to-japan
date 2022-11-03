@@ -1,7 +1,7 @@
 var bookMenuItemID = "";
 var progressWidth = 1;
 
-function toggleBookMenu(state)
+function toggleBookMenu(state) //SHOWS OR HIDES THE BOOK MENU ITEMS
 {
   var x = document.getElementById("bookDropdown");
   var containsHide = x.className.includes("w3-hide");
@@ -32,7 +32,7 @@ function toggleBookMenu(state)
   }
 }
 
-function changeBook(bookID)
+function changeBook(bookID) //QUERIES THE WORD TABLE TO RETRIEVE THE WORDS THAT CORRESPOND TO THE ARGUMENT
 {
   //PUT ALL MATICHING WORDS FROM WORDS ARRAY INTO A SPECIAL ARRAY
   activeBook = bookID;
@@ -45,21 +45,28 @@ function changeBook(bookID)
 const bookMenuItems = document.querySelectorAll(".bookMenuItem");
 
 Array.from(bookMenuItems).forEach( bookMenuItem => { //TRIGGERS FOR ALL BOOK MENU OPTIONS CLICKED
+
   bookMenuItem.addEventListener('click', (e) => {
+    bookMenuItemID = e.target.id; //FIND ELEMENT ID
+    var newBookID = bookMenuItemID.substring(5,6); //EXTRACT NUMBER
 
-  bookMenuItemID = e.target.id; //FIND ELEMENT ID
-  var newBookID = bookMenuItemID.substring(5,6); //EXTRACT NUMBER
+    var popup = document.getElementById("myPopup");
+    
+    
+    /*
+    Get-book-name
+     Here is where we need to find it in the fauanadb instead of the array
+    */
+    const book = books.find(e => e.id == newBookID);
 
-  var popup = document.getElementById("myPopup");
 
-  const book = books.find(e => e.id == newBookID);
 
-  popup.textContent = "Book changed to " + book.name;
-  document.getElementById("bookLabel").textContent = book.name;
-  changeBook(newBookID);
-  //hideBookMenu();
-  toggleBookMenu("OFF");
-  playPopUp();
+    popup.textContent = "Book changed to " + book.name;
+    document.getElementById("bookLabel").textContent = book.name;
+
+    changeBook(newBookID);
+    toggleBookMenu("OFF");
+    playPopUp();
   });  
 });
 
@@ -71,7 +78,8 @@ bookMenuButton.addEventListener('click', () => {
   toggleBookMenu("ON");
   });  
 
-function playPopUp() {
+function playPopUp() //KICKS OFF THE ANIMATION SEQUENCE FOR THE BOOK CHANGE POP UP
+{
   var popup = document.getElementById("myPopup");
 
   if (popup.className.indexOf("show") == -1) //ADD SHOW IF NOT THERE, RE-ADD IF THERE
@@ -82,7 +90,8 @@ function playPopUp() {
   }
 }
 
-function reset_animation() {
+function reset_animation() //STOPS THE BOOK CHANGE POP-UP ANIMATION
+{
   var el = document.getElementById("myPopup");
   el.style.animation = 'none';
   el.offsetHeight; /* trigger reflow */
