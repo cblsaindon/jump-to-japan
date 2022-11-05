@@ -1,0 +1,185 @@
+
+/*
+var pool;
+
+pool = client.query(
+  q.ToDate('2018-06-06')
+)
+.then(
+   function (res) { 
+    //console.log('Result:', res); 
+    //maxPlatforms = 50;
+    //console.log(maxPlatforms);
+    
+  }
+)
+.catch(function (err) { console.log('Error:', err) }
+)
+
+
+// Define a reference to the document that we want to stream
+// Note that the Scores collection must already exist
+
+//var docRef = q.Get(q.Ref(q.Collection('books'), '347152674401026644'));
+//var Select(['data', 'name'], '');
+//document.getElementById("scores").textContent = docRef+'yo';
+//document.getElementById("scores").textContent = dbs.data.name;
+
+
+//
+//
+
+var docRef = q.Ref(q.Collection('books'), '347152674401026644');
+var boo = "hi";
+var yooo = client.paginate(
+  //q.Ref(q.Collection('books'), '347347912002372179')
+  //q.Ref(q.Collection('books'), '347347912002372179')
+  q.Match(q.Index("get_books_by_name"), "travel")
+)
+.each(function (res) {
+  //console.log("start");
+  //console.log('Result:', res);
+  //console.log("end");
+
+  //boo = q.Var("res");
+  //return q.Get(res);
+  //boo = res;
+  //return boo;
+  //return q.Get(res);
+}) //res.id works
+.catch(function (err) { console.log('Error:', err) })
+
+
+*/
+//module.exports = myBoo;
+//const category = await yooo
+
+
+
+
+
+//console.log(yooo);
+//var you = docRef.name;
+
+//var heya = q.Ref(q.Collection('books'), '347152674401026644');
+
+//var docRef1 = client.query(q.Ref(q.Collection('books'), '347347912002372179'));
+
+//document.getElementById("scores").textContent = docRef1.data;
+/*
+var docRef1 = q.Map(
+  q.Paginate(
+    q.Match(q.Index('words_by_book'), 'essentials')),
+    q.Lambda("x",q.Get(q.Var("x"))
+    )
+);
+*/
+/*
+var docRef1 = q.Map(
+  q.Paginate(
+    q.Match(q.Index('words_by_book'), 'essentials')),
+    q.Lambda("x",q.Get(q.Var("x"))
+    )
+);
+*/
+
+//document.getElementById("scores").textContent = docRef.name;
+
+
+//var docRef = q.Paginate(q.Match(q.Index("words_by_book"), "essentials"))
+
+//document.getElementById("scores").textContent = docRef;
+//FOR PAPER: DOING IN BOOKS AND NOT WORDS TO AVOID DUPLICATION, BE FASTER, ETC. CAN EASILY ADD/REMOVE LANGUAGES TOO FOR FUTURE VERSIONS
+
+//WE WILL CREATE BOOKS WITH THE DIFFERENT LANGUAGES. GRAB THE ARRAYS FROM THOSE
+//AS LONG AS I MAKE AND CALL THIS CHANGE, WE SHOULD BE GOOD
+
+//docRef = q.Ref(q.Collection('books'), '347347912002372179');
+//startStream();
+
+/*
+
+function report(e) { //DO SOMETHING WITH EACH ELEMENT FROM THE DOCREF STREAM
+  console.log(e)
+  var data = ('action' in e)
+    ? e["document"].data
+    : e.data
+    //document.getElementById("scores").textContent = data.name
+    //arrEssentials = data;
+
+    //document.getElementById("scores").textContent = (data.japanese)[1]
+    //alert((data.japanese)[1]);
+    //arr.push((data.japanese)[1]);
+    
+
+
+}
+
+
+
+var stream;
+const startStream = () => {
+  stream = client.stream.document(docRef)
+  .on('snapshot', snapshot => {
+    report(snapshot)
+  })
+  .on('version', version => {
+    report(version)
+  })
+  .on('error', error => {
+    console.log('Error:', error)
+    stream.close()
+    setTimeout(startStream, 1000)
+  })
+  .start()
+
+}
+
+startStream()
+
+*/
+
+//TODO: MOVE TO FAUNA DATABASE
+
+/*
+var words = [];
+words[0] = { bookNumber: "1", japanese: "Konnichiwa", english: "Hello"};
+words[1] = { bookNumber: "1", japanese: "Arigatou gozaimasu", english: "Thank you"};
+words[2] = { bookNumber: "1", japanese: "Sumimasen", english: "Excuse me"};
+words[3] = { bookNumber: "1", japanese: "Hai", english: "Yes"};
+words[4] = { bookNumber: "1", japanese: "iie", english: "No"};
+words[5] = { bookNumber: "2", japanese: "Kippu", english: "Ticket"};
+words[6] = { bookNumber: "2", japanese: "Shinkansen", english: "Bullet train"};
+words[7] = { bookNumber: "2", japanese: "Basu", english: "Bus"};
+words[8] = { bookNumber: "2", japanese: "Eki", english: "Train station"};
+words[9] = { bookNumber: "2", japanese: "Mighi", english: "Right"};
+words[10] = { bookNumber: "2", japanese: "Hidari", english: "Left"};
+words[11] = { bookNumber: "3", japanese: "Hare", english: "Sunny"};
+words[12] = { bookNumber: "3", japanese: "Sakura", english: "Cherry blossom"};
+words[13] = { bookNumber: "3", japanese: "Sakana", english: "Fish"};
+words[14] = { bookNumber: "3", japanese: "Yama", english: "Mountain"};
+words[15] = { bookNumber: "3", japanese: "山", english: "Mountain"};
+words[16] = { bookNumber: "3", japanese: "Ame", english: "Rain"};
+words[17] = { bookNumber: "3", japanese: "雨", english: "Rain"};
+
+var books = [];
+books[0] = { id: "1", name: "Essentials"};
+books[1] = { id: "2", name: "Travel"};
+books[2] = { id: "3", name: "Nature"};
+*/
+
+/*
+
+function changeBook(bookID) //QUERIES THE WORD TABLE TO RETRIEVE THE WORDS THAT CORRESPOND TO THE ARGUMENT
+{
+  //PUT ALL MATICHING WORDS FROM WORDS ARRAY INTO A SPECIAL ARRAY
+//console.log(you);
+  //document.getElementById("scores").textContent = you;
+  //activeBook = bookID;
+  //activeBookWords = words.filter(function(word) {
+  //return word.bookNumber == bookID;
+  //});
+}
+
+
+*/

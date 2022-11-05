@@ -1,3 +1,25 @@
+
+
+
+
+//userip = data.host;  
+//usercountry = data.countryName;  
+//usercity = data.city;  
+//userregion = data.region;  
+//userlatitude = data.latitude;  
+//userlongitude = data.longitude;  
+//usertimezone = data.timezone; 
+
+
+
+
+var userAgent = navigator.userAgent;
+console.log(userAgent);
+//let browserName;
+
+alert(userAgent);
+
+
 var SVG; //MAIN SVG ELEMENT
 var w; //WIDTH OF THE SVG ELEMENT
 var h; //HEIGHT OF THE SVG ELEMENT
@@ -17,35 +39,9 @@ var activeBookNumber = 1;
 var activeBookWords;
 
 var playerScore = 0;
+var translationToggle = 0;
+var bookMenuName = "Essentials";
 
-var translationToggle = 1;
-
-//TODO: MOVE TO FAUNA DATABASE
-
-var words = [];
-words[0] = { bookNumber: "1", japanese: "Konnichiwa", english: "Hello"};
-words[1] = { bookNumber: "1", japanese: "Arigatou gozaimasu", english: "Thank you"};
-words[2] = { bookNumber: "1", japanese: "Sumimasen", english: "Excuse me"};
-words[3] = { bookNumber: "1", japanese: "Hai", english: "Yes"};
-words[4] = { bookNumber: "1", japanese: "iie", english: "No"};
-words[5] = { bookNumber: "2", japanese: "Kippu", english: "Ticket"};
-words[6] = { bookNumber: "2", japanese: "Shinkansen", english: "Bullet train"};
-words[7] = { bookNumber: "2", japanese: "Basu", english: "Bus"};
-words[8] = { bookNumber: "2", japanese: "Eki", english: "Train station"};
-words[9] = { bookNumber: "2", japanese: "Mighi", english: "Right"};
-words[10] = { bookNumber: "2", japanese: "Hidari", english: "Left"};
-words[11] = { bookNumber: "3", japanese: "Hare", english: "Sunny"};
-words[12] = { bookNumber: "3", japanese: "Sakura", english: "Cherry blossom"};
-words[13] = { bookNumber: "3", japanese: "Sakana", english: "Fish"};
-words[14] = { bookNumber: "3", japanese: "Yama", english: "Mountain"};
-words[15] = { bookNumber: "3", japanese: "山", english: "Mountain"};
-words[16] = { bookNumber: "3", japanese: "Ame", english: "Rain"};
-words[17] = { bookNumber: "3", japanese: "雨", english: "Rain"};
-
-var books = [];
-books[0] = { id: "1", name: "Essentials"};
-books[1] = { id: "2", name: "Travel"};
-books[2] = { id: "3", name: "Nature"};
 
 function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND BOOK DATA
 {
@@ -57,7 +53,6 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
   platformHeight = h/5;
   createLevel(); //CREATE LEVEL
   score();
-  changeBook(1);
 }
 
 function toggleTranslate() //SWITCHES JAPANESE AND ENGLISH BOOLEAN
@@ -110,21 +105,46 @@ function getRandomInt(max) //PROVIDES A RANDOM INTEGER FOR RANDOMIZING WORDS
 
 function setPlatform() //DRAWS A NEW RANDOMIZED WORD
 {
-  var randomInt = getRandomInt(activeBookWords.length); 
 
-  platformTextJapanese = activeBookWords[randomInt].japanese;
-  platformTextEnglish = activeBookWords[randomInt].english;
+  //one
+  client.paginate(
+    q.Match(q.Index("words_by_book"), bookMenuName)
+  )
+  .each(
+     function (res) { 
+      
+      var randomInt = getRandomInt(res.length); 
+      platformTextJapanese=res[randomInt][0]; //[0][0] is japanese, [0][1] is english
+      platformTextEnglish=res[randomInt][1]; //[0][0] is japanese, [0][1] is english
 
-  if (translationToggle == 0) { //**** JAPANESE ***//
-    platform.textContent = platformTextJapanese; 
-    platform.setAttributeNS(null,"fill","#000000"); //FILLCOLOR
-  } else { //**** ENGLISH ***//
-    platform.textContent = platformTextEnglish; 
-    platform.setAttributeNS(null,"fill","#FFFFFF"); //FILLCOLOR
-  }
+      if (translationToggle == 0) { //**** JAPANESE ***//
+        platform.textContent = platformTextJapanese; 
+        platform.setAttributeNS(null,"fill","#000000"); //FILLCOLOR
+      } else { //**** ENGLISH ***//
+        platform.textContent = platformTextEnglish; 
+        platform.setAttributeNS(null,"fill","#FFFFFF"); //FILLCOLOR
+      }
+    }
+  )
+  .catch(function (err) { console.log('Error:', err) }
+  )
+
+  //two
+
+// THIS ADDS TO AN EXISTING COLLECTION
+/*
+var createP = client.query(
+  q.Create(q.Collection('LoginHistory'), { data: { testField: 'testValue' } })
+)
+.then(function (res) { console.log('Result:', res) })
+.catch(function (err) { console.log('Error:', err) })
+
+*/
+
+//
 
   platform.position.y = (h/10); //SET Y POSITION
-  platform.position.x = (w/2);//SET RANDOM START POSITION X RIGHT; the higher, the more right ex. 800
+  platform.position.x = (w/1.5);//SET RANDOM START POSITION X RIGHT; the higher, the more right ex. 800
 
   activePlatforms +=1;
 }

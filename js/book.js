@@ -3,9 +3,9 @@ var progressWidth = 1;
 
 function toggleBookMenu(state) //SHOWS OR HIDES THE BOOK MENU ITEMS
 {
-  var x = document.getElementById("bookDropdown");
-  var containsHide = x.className.includes("w3-hide");
-  var containsShow = x.className.includes("w3-show");
+  let x = document.getElementById("bookDropdown");
+  let containsHide = x.className.includes("w3-hide");
+  let containsShow = x.className.includes("w3-show");
 
   //ADD HIDE IF NOT THERE, AND ADD SHOW IF THERE   
 
@@ -32,51 +32,27 @@ function toggleBookMenu(state) //SHOWS OR HIDES THE BOOK MENU ITEMS
   }
 }
 
-function changeBook(bookID) //QUERIES THE WORD TABLE TO RETRIEVE THE WORDS THAT CORRESPOND TO THE ARGUMENT
-{
-  //PUT ALL MATICHING WORDS FROM WORDS ARRAY INTO A SPECIAL ARRAY
-  activeBook = bookID;
-  activeBookWords = words.filter(function(word) {
-  return word.bookNumber == bookID;
-  });
-}
-
 /************BOOK MENU OPTION LISENTER*************/
 const bookMenuItems = document.querySelectorAll(".bookMenuItem");
 
 Array.from(bookMenuItems).forEach( bookMenuItem => { //TRIGGERS FOR ALL BOOK MENU OPTIONS CLICKED
 
   bookMenuItem.addEventListener('click', (e) => {
-    bookMenuItemID = e.target.id; //FIND ELEMENT ID
-    var newBookID = bookMenuItemID.substring(5,6); //EXTRACT NUMBER
+    bookMenuName = e.target.id;
 
     var popup = document.getElementById("myPopup");
-    
-    
-    /*
-    Get-book-name
-     Here is where we need to find it in the fauanadb instead of the array
-    */
-    const book = books.find(e => e.id == newBookID);
+    popup.textContent = "Book changed to " + bookMenuName;
 
-
-
-    popup.textContent = "Book changed to " + book.name;
-    document.getElementById("bookLabel").textContent = book.name;
-
-    changeBook(newBookID);
+    document.getElementById("bookLabel").textContent = bookMenuName;
     toggleBookMenu("OFF");
     playPopUp();
   });  
 });
 
-//bookMenuButton
-const bookMenuButton = document.querySelector("#bookMenuButton");
-
-//DO SOMETHING
+//ENSURES WE CAN RE-OPEN THE BOOK MENU
 bookMenuButton.addEventListener('click', () => {
   toggleBookMenu("ON");
-  });  
+});  
 
 function playPopUp() //KICKS OFF THE ANIMATION SEQUENCE FOR THE BOOK CHANGE POP UP
 {
