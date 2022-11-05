@@ -1,25 +1,4 @@
 
-
-
-
-//userip = data.host;  
-//usercountry = data.countryName;  
-//usercity = data.city;  
-//userregion = data.region;  
-//userlatitude = data.latitude;  
-//userlongitude = data.longitude;  
-//usertimezone = data.timezone; 
-
-
-
-
-var userAgent = navigator.userAgent;
-console.log(userAgent);
-//let browserName;
-
-alert(userAgent);
-
-
 var SVG; //MAIN SVG ELEMENT
 var w; //WIDTH OF THE SVG ELEMENT
 var h; //HEIGHT OF THE SVG ELEMENT
@@ -129,17 +108,6 @@ function setPlatform() //DRAWS A NEW RANDOMIZED WORD
   .catch(function (err) { console.log('Error:', err) }
   )
 
-  //two
-
-// THIS ADDS TO AN EXISTING COLLECTION
-/*
-var createP = client.query(
-  q.Create(q.Collection('LoginHistory'), { data: { testField: 'testValue' } })
-)
-.then(function (res) { console.log('Result:', res) })
-.catch(function (err) { console.log('Error:', err) })
-
-*/
 
 //
 

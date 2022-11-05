@@ -4,6 +4,7 @@ var pool;
 
 pool = client.query(
   q.ToDate('2018-06-06')
+  Time("2022-11-03T02:04:32.278Z")
 )
 .then(
    function (res) { 
