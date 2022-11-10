@@ -25,7 +25,7 @@ from website template
 */
 
 #bardark {
-background-color: #ec71bd;
+background-color: #ca3b93;
 font-family:Georgia, 'Times New Roman', Times, serif;
 } 
 
@@ -136,3 +136,13 @@ html, body {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 /*@media only screen and (min-width: 600px) {...}*/
+
+
+/* If the screen size is 600px wide or less, hide the element */
+@media only screen and (max-height: 600px) {
+  #TheContainerSegment {
+    display: none;
+
+  }
+}
+

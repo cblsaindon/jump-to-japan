@@ -19,13 +19,28 @@ function moveProgress(direction) //FILLS IN OR SUBTRACTS FROM THE PROGRESS BAR D
 
     } else if (direction == "up") {
       progressWidth += powerupRate;
-      elem.style.width = progressWidth + '%';
-      elem.innerHTML =  Math.round(progressWidth)  + '%';
+      barPercentage = Math.round(progressWidth)  + '%'
+
+      if (compactMode) {
+        barText.textContent = barPercentage;
+        barImage.setAttributeNS(null,"width",progressWidth*3);  //WIDTH
+      } else {
+        elem.style.width = progressWidth + '%';
+        elem.innerHTML =  barPercentage;
+      }
     } else if (direction == "down" && progressWidth > 0) {
         //burn it all!
         progressWidth -= powerupRate;
-        elem.style.width = progressWidth + '%';
-        elem.innerHTML = Math.round(progressWidth)  + '%';
+
+        barPercentage = Math.round(progressWidth)  + '%'
+
+        if (compactMode) {
+          barText.textContent = barPercentage;
+          barImage.setAttributeNS(null,"width",progressWidth*3);  //WIDTH
+        } else {
+          elem.style.width = progressWidth + '%';
+          elem.innerHTML =  barPercentage;
+        }
     } else {
         //no action is needed
     }

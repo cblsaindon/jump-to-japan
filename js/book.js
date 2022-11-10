@@ -43,7 +43,12 @@ Array.from(bookMenuItems).forEach( bookMenuItem => { //TRIGGERS FOR ALL BOOK MEN
     var popup = document.getElementById("myPopup");
     popup.textContent = "Book changed to " + bookMenuName;
 
-    document.getElementById("bookLabel").textContent = bookMenuName;
+
+    if (compactMode) {
+      book.textContent = bookMenuName; //ADD TO SCORE
+    } else {
+      document.getElementById("bookLabel").textContent = bookMenuName;
+    }
     toggleBookMenu("OFF");
     playPopUp();
   });  

@@ -21,6 +21,8 @@ var playerScore = 0;
 var translationToggle = 0;
 var bookMenuName = "Essentials";
 
+var compactMode = true; //CONDENSED VERSION OF GUI FOR SMALLER WINDOWS
+
 
 function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND BOOK DATA
 {
@@ -32,6 +34,14 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
   platformHeight = h/5;
   createLevel(); //CREATE LEVEL
   score();
+
+  //DRAW STATS ON GAME SCREEN IF THE CSS SAYS ITS ENOUGH TO HIDE THE TOP CONTAINER
+  var topContainer = document.getElementById("TheContainerSegment");
+  var isDisplay = window.getComputedStyle(topContainer).display;
+  if (isDisplay == "none")  {
+    createStats();
+  } else if (isDisplay == "block") {
+  }
 }
 
 function toggleTranslate() //SWITCHES JAPANESE AND ENGLISH BOOLEAN
@@ -79,8 +89,6 @@ function getRandomInt(max) //PROVIDES A RANDOM INTEGER FOR RANDOMIZING WORDS
 {
   return Math. floor(Math. random() * max);
 }
-
-
 
 function setPlatform() //DRAWS A NEW RANDOMIZED WORD
 {
@@ -131,9 +139,58 @@ function translateWord() //TOGGLES THE WORD TO JAPANESE OR ENGLISH
   }
 }
 
-function score() //TODO: REMOVE
+function score() //TODO: CURRENTLY ALL ADDITONAL DRAWING. WILL NEED TO UPDATE
 {
+  var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
+  
+  score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   score.current = 0; //CURRENT SCORE
+
+
+}
+
+function createStats() {
+  var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
+  
+  //score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
+  score.setAttributeNS(null,"x",w*.95); //START X 
+  score.setAttributeNS(null,"y",h/5);    //START Y
+  score.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
+  score.setAttributeNS(null,"font-family","helvetica"); //FONT
+  score.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+  score.textContent ="0";  //TEXT
+
+
+  SVG.appendChild(score) //APPEND LEVEL TO THE SVG ELEMENT
+
+
+
+  book = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
+  book.setAttributeNS(null,"x",w/50); //START X 
+  book.setAttributeNS(null,"y",h/5);    //START Y
+  book.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
+  book.setAttributeNS(null,"font-family","helvetica"); //FONT
+  book.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+  book.textContent =bookMenuName;  //TEXT
+  SVG.appendChild(book) //APPEND LEVEL TO THE SVG ELEMENT
+
+
+  barImage = document.createElementNS(svgNS,"rect"); //CREATE A RTEXT NODE
+  barImage.setAttributeNS(null,"x",w/3.5); //START X 
+  barImage.setAttributeNS(null,"y",h/8.5);    //START Y
+  barImage.setAttributeNS(null,"width",progressWidth);  //WIDTH
+  barImage.setAttributeNS(null,"height",15);   //HEIGHT
+  barImage.setAttributeNS(null,"fill","blue");   //FILLCOLOR
+  SVG.appendChild(barImage) //APPEND LEVEL TO THE SVG ELEMENT
+
+  barText = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
+  barText.setAttributeNS(null,"x",w/3.4); //START X 
+  barText.setAttributeNS(null,"y",h/5);    //START Y
+  barText.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
+  barText.setAttributeNS(null,"font-family","helvetica"); //FONT
+  barText.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+  barText.textContent ="0%";  //TEXT
+  SVG.appendChild(barText) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
 function updateScore() //INCREASES THE SCORE
@@ -148,9 +205,12 @@ function updateScore() //INCREASES THE SCORE
     playerScore =+ 10;
 
     }
-    score.textContent =Math.round(score.current);  //UPDATE SCORE
 
-    document.getElementById("scoreLabel").textContent = Math.round(score.current);
+    if (compactMode) {
+      score.textContent =Math.round(score.current);  //UPDATE SCORE
+    } else {
+      document.getElementById("scoreLabel").textContent = Math.round(score.current);
+    }
 }
 
 function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT FALLS OFF THE SCREEN, REPOSITIONS IT BACK TO THE RIGHT
