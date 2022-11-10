@@ -22,6 +22,7 @@ function moveProgress(direction) //FILLS IN OR SUBTRACTS FROM THE PROGRESS BAR D
       barPercentage = Math.round(progressWidth)  + '%'
 
       if (compactMode) {
+
         barText.textContent = barPercentage;
         barImage.setAttributeNS(null,"width",progressWidth*3);  //WIDTH
       } else {

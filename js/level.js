@@ -35,13 +35,29 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
   createLevel(); //CREATE LEVEL
   score();
 
+
+
   //DRAW STATS ON GAME SCREEN IF THE CSS SAYS ITS ENOUGH TO HIDE THE TOP CONTAINER
   var topContainer = document.getElementById("TheContainerSegment");
   var isDisplay = window.getComputedStyle(topContainer).display;
   if (isDisplay == "none")  {
-    createStats();
+    compactMode = true; 
   } else if (isDisplay == "block") {
+    compactMode = false; 
+  } else {
+    compactMode = false; 
   }
+
+  if (compactMode)  {
+    createStats();
+  } 
+
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    //mobile!
+    //alert(navigator.userAgent);
+    document.getElementById("controlsLabel").innerText = "Move left/right: Touch the left or right side of the screen. Jump: Two fingers"
+   }
+
 }
 
 function toggleTranslate() //SWITCHES JAPANESE AND ENGLISH BOOLEAN
@@ -160,10 +176,7 @@ function createStats() {
   score.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
   score.textContent ="0";  //TEXT
 
-
   SVG.appendChild(score) //APPEND LEVEL TO THE SVG ELEMENT
-
-
 
   book = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   book.setAttributeNS(null,"x",w/50); //START X 
@@ -173,7 +186,6 @@ function createStats() {
   book.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
   book.textContent =bookMenuName;  //TEXT
   SVG.appendChild(book) //APPEND LEVEL TO THE SVG ELEMENT
-
 
   barImage = document.createElementNS(svgNS,"rect"); //CREATE A RTEXT NODE
   barImage.setAttributeNS(null,"x",w/3.5); //START X 

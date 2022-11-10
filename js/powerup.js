@@ -24,17 +24,25 @@ function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
     togglePowerupState(powerupReady);
 
     var e = document.getElementById("myBar");
-  if (e.className.indexOf("w3-blue") != -1) { 
+    if (compactMode) {
+      barImage.setAttributeNS(null,"fill","#FFBF00");   //FILLCOLOR
+    } else {
+      if (e.className.indexOf("w3-blue") != -1) { e.className = e.className.replace(" w3-blue", " w3-amber");}
+    }
 
-    e.className = e.className.replace(" w3-blue", " w3-amber");
-  }
 
   } else if(isStart == false) {
     powerupActiveOne = false;
-    var e = document.getElementById("myBar");
-    if (e.className.indexOf("w3-amber") != -1) { 
-      e.className = e.className.replace(" w3-amber", " w3-blue");
+
+    if (compactMode) {
+      barImage.setAttributeNS(null,"fill","blue");   //FILLCOLOR
+    } else {
+      var e = document.getElementById("myBar");
+      if (e.className.indexOf("w3-amber") != -1) { e.className = e.className.replace(" w3-amber", " w3-blue");}
     }
+
+
+
     document.getElementById("powerupButton").innerHTML = "Charging...";
   }
 }
