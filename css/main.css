@@ -3,22 +3,46 @@
     --gold: #dbaf1f;
     --white: #ffffff;
     --black: #000000;
-    --lightgrey: #e7e7e7;
-    --darkgrey: #4e4e4e;
-    --darkblue: #264868;
-    --mediumblue:#5ea8ed;
+    --lightcolorone: #deefff;
+    /*--lightcolorone: #ffffff;*/
+    --darkcolorone: #4e4e4e;
+    --darkcolortwo: #264868;
+    --mediumcolortwo:#5ea8ed;
     --darkgreen: #264868;
 }
 
+
+
+/*
+#ec275f
+#f25477
+#ffa7a6
+#ffdcdc
+#d4e0ee
+
+from website template
+#deefff
+*/
+
+#bardark {
+background-color: #ec71bd;
+font-family:Georgia, 'Times New Roman', Times, serif;
+} 
+
+#barlight {
+  background-color: #f093cc;
+}
+
 .light-theme {
-  --bg: var(--lightgrey);
+  --bg: var(--lightcolorone);
   --fontColor: var(--black);
   --btnBg: var(--black);
   --btnBgEnabled: var(--gold);
-  --btnBgDisabled: var(--lightgrey);
+  --btnBgDisabled: var(--lightcolorone);
   --btnFontColor: var(--white);
   --containerColor: var(--white);
-  --gameColor: var(--mediumblue);
+  --gameColor: #a2caff;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .dark-theme {
@@ -28,8 +52,8 @@
   --btnBgEnabled: var(--gold);
   --btnBgDisabled: var(--black);
   --btnFontColor: var(--black);
-  --containerColor: var(--darkgrey);
-  --gameColor: var(--darkblue);
+  --containerColor: var(--darkcolorone);
+  --gameColor: var(--darkcolortwo);
 }
 
 .powerupButton.disabled {
@@ -61,7 +85,7 @@ html, body {
   padding: 0;
   border: 0;
   width:100%;
-  background-color: #5ea8ed;
+  background-color: #ffa7a6;
   -webkit-touch-callout: none;
   -webkit-user-select: none; 
   -khtml-user-select: none; 
@@ -70,12 +94,14 @@ html, body {
   user-select: none;   
   background: var(--bg);
   color: var(--fontColor);
-  font-family: helvetica;
+  /*font-family: helvetica;*/
+
   overflow: hidden;
 }
 
 .containerSegment {
   background-color: var(--containerColor);
+  
 
 }
 

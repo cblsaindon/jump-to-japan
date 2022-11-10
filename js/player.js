@@ -20,7 +20,7 @@ function createPlayer() //THE PLAYER GETS DRAWN, UPDATED, AND CHECKED FOR COLLIS
   playerBody.setAttributeNS(null,"y",h/40); //START Y -> OFFSCREEN
   playerBody.setAttributeNS(null,"width",w/30);   //WIDTH
   playerBody.setAttributeNS(null,"height",h/5);   //HEIGHT
-  playerBody.setAttributeNS(null,"fill","black");   //FILLCOLOR
+  playerBody.setAttributeNS(null,"fill","#274158");   //FILLCOLOR
 
   player.appendChild(playerBody) //PUT THE PLAYER INSIDE THE "player" GROUP
 
