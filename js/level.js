@@ -140,15 +140,17 @@ function updateScore() //INCREASES THE SCORE
 {
   if (powerupActiveOne == false) {
     moveProgress("up");
-    score.current += 1; //ADD TO SCORE
-    playerScore =+ 1;
+    score.current += 0.1; //ADD TO SCORE
+    playerScore =+ 0.1;
   } else {
     moveProgress("down");
-    score.current += 9001; //ADD TO SCORE
-    playerScore =+ 100;
+    score.current += 10; //ADD TO SCORE
+    playerScore =+ 10;
+
     }
     score.textContent =Math.round(score.current);  //UPDATE SCORE
-    document.getElementById("scoreLabel").textContent = score.current;
+
+    document.getElementById("scoreLabel").textContent = Math.round(score.current);
 }
 
 function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT FALLS OFF THE SCREEN, REPOSITIONS IT BACK TO THE RIGHT
