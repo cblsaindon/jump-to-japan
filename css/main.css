@@ -30,7 +30,8 @@ font-size: medium;
 } 
 
 #barlight {
-  background-color: #f093cc;
+ background-color: #f093cc;
+
 }
 
 .light-theme {
@@ -42,6 +43,8 @@ font-size: medium;
   --btnFontColor: var(--white);
   --containerColor: var(--white);
   --gameColor: #a2caff;
+
+
   font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -76,6 +79,7 @@ font-size: medium;
   border: none;
   color: var(--btnFontColor);
   background-color: var(--btnBg);
+  
 }
 
 html, body {
@@ -85,7 +89,7 @@ html, body {
   padding: 0;
   border: 0;
   width:100%;
-  background-color: #ffa7a6;
+
   -webkit-touch-callout: none;
   -webkit-user-select: none; 
   -khtml-user-select: none; 
@@ -109,7 +113,9 @@ html, body {
 {
   min-width:100%;
   min-height:100%;
-  background-color: var(--gameColor);
+  /*background-color: var(--gameColor);*/
+  background-image: url("gamebg_cherryblossom.jpg");
+
 
 }
 
@@ -128,14 +134,10 @@ html, body {
   height: 0;
 }
 
-/* TODO: Additional rsponsive code for specific screen sizes */
-
-/* Extra small devices (phones, 600px and down) */
-/*@media only screen and (max-width: 600px) {...}*/
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/*@media only screen and (min-width: 600px) {...}*/
-
+#scoreLabel {
+  stroke-width: 5px !important;
+  stroke: #000000 !important;
+}
 
 /* If the screen size is 600px wide or less, hide the element */
 @media only screen and (max-height: 600px) {

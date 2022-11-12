@@ -10,6 +10,7 @@ function init()
   initLevel(); //INITIALIZE THE LEVEL STRUCTURE
   initPlayer(); //INITIALIZE THE PLAYER
   initControll(); //INITIALIZE CONTROLLS
+  initBackground();
   render(); //START RENDER
 }
 
@@ -22,5 +23,6 @@ function render()
     
   updateLevel(dt); //UPDATE LEVEL
   updatePlayer(dt);  //UPDATE PLAYER
+  updateBackground(dt); //UPDATE SCROLLING BACKGROUND
   requestAnimationFrame(render); //CONTINUE RENDER  
 }

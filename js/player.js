@@ -15,8 +15,7 @@ function createPlayer() //THE PLAYER GETS DRAWN, UPDATED, AND CHECKED FOR COLLIS
   player = document.createElementNS(svgNS,"g"); //CREATE GROUP FOR THE PLAYER
 
   playerBody = document.createElementNS(svgNS,"rect"); //CREATE RECT WHICH REPRESENTS THE PLAYER
-  playerBody.setAttributeNS(null,"x",w/2-25); //START X = CENTER OF SCREEN 
-  //playerBody.setAttributeNS(null,"y",-100); //START Y -> OFFSCREEN
+  playerBody.setAttributeNS(null,"x",w/5); //START X = CENTER OF SCREEN 
   playerBody.setAttributeNS(null,"y",h/40); //START Y -> OFFSCREEN
   playerBody.setAttributeNS(null,"width",w/30);   //WIDTH
   playerBody.setAttributeNS(null,"height",h/5);   //HEIGHT

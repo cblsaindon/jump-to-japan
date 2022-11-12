@@ -37,6 +37,7 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
 
 
 
+
   //DRAW STATS ON GAME SCREEN IF THE CSS SAYS ITS ENOUGH TO HIDE THE TOP CONTAINER
   var topContainer = document.getElementById("TheContainerSegment");
   var isDisplay = window.getComputedStyle(topContainer).display;
@@ -52,12 +53,14 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
     createStats();
   } 
 
+  var popup = document.getElementById("myPopup");
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    //mobile!
-    //alert(navigator.userAgent);
-    document.getElementById("controlsLabel").innerText = "How to Play: move left/right: Touch the left or right side of the screen. Jump: Two fingers"
-   }
+    popup.textContent = "Tap anywhere in the game screen to Jump";
 
+   } else { //COMPUTER
+    popup.textContent = "Use the left, right, and up arrow keys to move";
+   }
+   playPopUp();
 }
 
 function toggleTranslate() //SWITCHES JAPANESE AND ENGLISH BOOLEAN
@@ -181,9 +184,12 @@ function createStats() {
   book = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   book.setAttributeNS(null,"x",w/50); //START X 
   book.setAttributeNS(null,"y",h/5);    //START Y
-  book.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
+  //book.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
+  book.setAttributeNS(null,"fill","white"); //FILLCOLOR
   book.setAttributeNS(null,"font-family","helvetica"); //FONT
   book.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+  book.setAttributeNS(null, "stroke", "black");
+  book.setAttribute(null, "stroke-width", "1%");
   book.textContent =bookMenuName;  //TEXT
   SVG.appendChild(book) //APPEND LEVEL TO THE SVG ELEMENT
 
@@ -201,6 +207,7 @@ function createStats() {
   barText.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
   barText.setAttributeNS(null,"font-family","helvetica"); //FONT
   barText.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+
   barText.textContent ="0%";  //TEXT
   SVG.appendChild(barText) //APPEND LEVEL TO THE SVG ELEMENT
 }
@@ -221,7 +228,10 @@ function updateScore() //INCREASES THE SCORE
     if (compactMode) {
       score.textContent =Math.round(score.current);  //UPDATE SCORE
     } else {
-      document.getElementById("scoreLabel").textContent = Math.round(score.current);
+      var scoreLabel = document.getElementById("scoreLabel");
+
+      scoreLabel = Math.round(score.current);
+      
     }
 }
 
