@@ -174,9 +174,12 @@ function createStats() {
   //score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   score.setAttributeNS(null,"x",w*.95); //START X 
   score.setAttributeNS(null,"y",h/5);    //START Y
-  score.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
+  score.setAttributeNS(null,"fill","white"); //FILLCOLOR
   score.setAttributeNS(null,"font-family","helvetica"); //FONT
   score.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+  score.setAttributeNS(null, "stroke", "black");
+  score.setAttributeNS(null, "stroke-width", "0.2%");
+  
   score.textContent ="0";  //TEXT
 
   SVG.appendChild(score) //APPEND LEVEL TO THE SVG ELEMENT
@@ -184,12 +187,12 @@ function createStats() {
   book = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   book.setAttributeNS(null,"x",w/50); //START X 
   book.setAttributeNS(null,"y",h/5);    //START Y
-  //book.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
   book.setAttributeNS(null,"fill","white"); //FILLCOLOR
   book.setAttributeNS(null,"font-family","helvetica"); //FONT
   book.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
   book.setAttributeNS(null, "stroke", "black");
-  book.setAttribute(null, "stroke-width", "1%");
+  book.setAttributeNS(null, "stroke-width", "0.2%");
+
   book.textContent =bookMenuName;  //TEXT
   SVG.appendChild(book) //APPEND LEVEL TO THE SVG ELEMENT
 
@@ -198,15 +201,18 @@ function createStats() {
   barImage.setAttributeNS(null,"y",h/8.5);    //START Y
   barImage.setAttributeNS(null,"width",progressWidth);  //WIDTH
   barImage.setAttributeNS(null,"height",15);   //HEIGHT
-  barImage.setAttributeNS(null,"fill","blue");   //FILLCOLOR
+  barImage.setAttributeNS(null,"fill","#2196F3");   //FILLCOLOR
   SVG.appendChild(barImage) //APPEND LEVEL TO THE SVG ELEMENT
 
   barText = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   barText.setAttributeNS(null,"x",w/3.4); //START X 
   barText.setAttributeNS(null,"y",h/5);    //START Y
-  barText.setAttributeNS(null,"fill","#ca3b93"); //FILLCOLOR
+  barText.setAttributeNS(null,"fill","white"); //FILLCOLOR
   barText.setAttributeNS(null,"font-family","helvetica"); //FONT
   barText.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+  barText.setAttributeNS(null, "stroke", "black");
+  barText.setAttributeNS(null, "stroke-width", "0.2%");
+
 
   barText.textContent ="0%";  //TEXT
   SVG.appendChild(barText) //APPEND LEVEL TO THE SVG ELEMENT
