@@ -130,7 +130,7 @@ function updatePlayer(dt)
 
   if(keys[38] && player.onFloor) //JUMP
   {
-    alert("boing");
+    
     player.velocity.y = -10 // Acceleration due to gravity
     target = null;
   }
