@@ -88,7 +88,7 @@ function createLevel() //DRAWS THE SVG CONTAINER, GROUND, AND WORD
   ground.setAttributeNS(null,"y",h-10);  //START Y
   ground.setAttributeNS(null,"width",w);  //WIDTH
   ground.setAttributeNS(null,"height",50);   //HEIGHT
-  ground.setAttributeNS(null,"fill","green");   //FILLCOLOR
+  ground.setAttributeNS(null,"fill","#2F4858");   //FILLCOLOR
   ground.position = { x: 0, y: 0 }; //TRANSFORM VALUE OF THE GROUND
 
   platform = document.createElementNS(svgNS,"text"); //CREATE A RECT WHICH REPRESENT ONE PLATFORM
@@ -148,13 +148,13 @@ function translateWord() //TOGGLES THE WORD TO JAPANESE OR ENGLISH
 {
   if (translationToggle == 0) { //**** ENGLISH ***//
     platform.textContent = platformTextEnglish; 
-    platform.setAttributeNS(null,"fill","#FFFFFF"); //FILLCOLOR
-    platform.setAttributeNS(null, "stroke", "#FFFFFF");
+    platform.setAttributeNS(null,"fill","#74728E"); //FILLCOLOR
+    platform.setAttributeNS(null, "stroke", "#9C86A4");
 
   } else { //**** JAPANESE ***//
     platform.textContent = platformTextJapanese;
-    platform.setAttributeNS(null,"fill","#000000"); //FILLCOLOR 
-    platform.setAttributeNS(null, "stroke", "#000000");
+    platform.setAttributeNS(null,"fill","#4D222F"); //FILLCOLOR 
+    platform.setAttributeNS(null, "stroke", "#4D222F");
   }
 }
 
@@ -202,6 +202,7 @@ function createStats() {
   barImage.setAttributeNS(null,"width",progressWidth);  //WIDTH
   barImage.setAttributeNS(null,"height",15);   //HEIGHT
   barImage.setAttributeNS(null,"fill","#2196F3");   //FILLCOLOR
+  barImage.setAttributeNS(null,"rx","3");   //FILLCOLOR
   SVG.appendChild(barImage) //APPEND LEVEL TO THE SVG ELEMENT
 
   barText = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE

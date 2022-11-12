@@ -7,7 +7,7 @@ var gameScene = document.getElementById("SVG_scene");
 
 
 function initBackground() {
-
+    gameScene.style.backgroundPositionY = "-350px";
 
 }
 

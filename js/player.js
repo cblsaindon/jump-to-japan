@@ -110,14 +110,16 @@ function updatePlayer(dt)
     player.position = {x:player.position.x,y:0};
   }
 
-  var leftEdge = ((w/2)*-1)+30; //THE LEFT EDGE OF SVG ELEMENT
-  var rightEdge = ((w/2)); //THE RIGHT EDGE OF SVG ELEMENT
+  var leftEdge = (-1*(w/5)); //THE LEFT EDGE OF SVG ELEMENT
+  var rightEdge = w/1.3; //THE RIGHT EDGE OF SVG ELEMENT
 
   if(player.position.x <= (leftEdge)) //CHECK COLLISION FOR THE LEFT EDGE
   {
+
     player.position = {x:leftEdge,y:player.position.y};
   } else if(player.position.x >= rightEdge) //CHECK COLLISION FOR THE RIGHT EDGE
   { 
+
     player.position = {x:rightEdge,y:player.position.y};
   }
 
@@ -129,7 +131,7 @@ function updatePlayer(dt)
 
   if(keys[38] && player.onFloor) //JUMP
   {
-    
+
     player.velocity.y = -10 // Acceleration due to gravity
     target = null;
   }
