@@ -21,6 +21,9 @@ var playerScore = 0;
 var translationToggle = 0;
 var bookMenuName = "Essentials";
 
+var englishFontColor = "#FFF5F9";
+var japaneseFontColor = "#4D222F";
+
 var compactMode = true; //CONDENSED VERSION OF GUI FOR SMALLER WINDOWS
 
 
@@ -125,10 +128,10 @@ function setPlatform() //DRAWS A NEW RANDOMIZED WORD
 
       if (translationToggle == 0) { //**** JAPANESE ***//
         platform.textContent = platformTextJapanese; 
-        platform.setAttributeNS(null,"fill","#000000"); //FILLCOLOR
+        platform.setAttributeNS(null,"fill",japaneseFontColor); //FILLCOLOR
       } else { //**** ENGLISH ***//
         platform.textContent = platformTextEnglish; 
-        platform.setAttributeNS(null,"fill","#FFFFFF"); //FILLCOLOR
+        platform.setAttributeNS(null,"fill",englishFontColor); //FILLCOLOR
       }
     }
   )
@@ -148,13 +151,13 @@ function translateWord() //TOGGLES THE WORD TO JAPANESE OR ENGLISH
 {
   if (translationToggle == 0) { //**** ENGLISH ***//
     platform.textContent = platformTextEnglish; 
-    platform.setAttributeNS(null,"fill","#74728E"); //FILLCOLOR
-    platform.setAttributeNS(null, "stroke", "#9C86A4");
+    platform.setAttributeNS(null,"fill",englishFontColor); //FILLCOLOR
+    platform.setAttributeNS(null, "stroke", englishFontColor);
 
   } else { //**** JAPANESE ***//
     platform.textContent = platformTextJapanese;
-    platform.setAttributeNS(null,"fill","#4D222F"); //FILLCOLOR 
-    platform.setAttributeNS(null, "stroke", "#4D222F");
+    platform.setAttributeNS(null,"fill",japaneseFontColor); //FILLCOLOR 
+    platform.setAttributeNS(null, "stroke", japaneseFontColor);
   }
 }
 
