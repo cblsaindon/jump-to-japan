@@ -1,9 +1,9 @@
 :root {
     --orange: #db831f;
-    --gold: #dbaf1f;
+    --gold: #FCC201;
     --white: #ffffff;
     --black: #000000;
-    --lightcolorone: #deefff;
+    --lightcolorone: hsl(220, 67%, 92%);
     /*--lightcolorone: #ffffff;*/
     --darkcolorone: #4e4e4e;
     --darkcolortwo: #264868;
@@ -24,14 +24,13 @@ from website template
 */
 
 #bardark {
-background-color: #ca3b93;
+background-color: #2F4858;
 font-family:Georgia, 'Times New Roman', Times, serif;
 font-size: medium;
 } 
 
 #barlight {
- background-color: #f093cc;
-
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 .light-theme {

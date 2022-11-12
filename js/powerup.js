@@ -25,7 +25,7 @@ function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
 
     var e = document.getElementById("myBar");
     if (compactMode) {
-      barImage.setAttributeNS(null,"fill","#FFBF00");   //FILLCOLOR
+      barImage.setAttributeNS(null,"fill","#FCC201");   //FILLCOLOR
     } else {
       if (e.className.indexOf("w3-blue") != -1) { e.className = e.className.replace(" w3-blue", " w3-amber");}
     }
