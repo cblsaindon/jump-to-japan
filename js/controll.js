@@ -34,3 +34,6 @@ function initControll()
   
   },false);
 }
+
+//On computer, you can go left and right and jump
+//On mobile, you can only jump

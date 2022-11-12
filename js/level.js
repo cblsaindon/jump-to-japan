@@ -55,7 +55,7 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     //mobile!
     //alert(navigator.userAgent);
-    document.getElementById("controlsLabel").innerText = "Move left/right: Touch the left or right side of the screen. Jump: Two fingers"
+    document.getElementById("controlsLabel").innerText = "How to Play: move left/right: Touch the left or right side of the screen. Jump: Two fingers"
    }
 
 }

@@ -29,6 +29,7 @@
       <div class="w3-container w3-center containerSegment">
         <span onclick="document.getElementById('settingsModal').style.display='none'"
         class="w3-button w3-display-topright">&times;</span>
+
           <h4>Settings and Accessibility</h4>
 
         <!-- Rounded switch -->
@@ -59,13 +60,12 @@
 
   <!-- Large Navbar -->
   <div class="w3-top">
-    <div id="barlight" class="w3-bar w3-left-align w3-large w3-theme-d1">
-
-      <a href="#" id="bardark" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Jump to Japan v1.32</a>
+    <div id="barlight" class="w3-bar w3-left-align w3-theme-d1">
+      <a href="#" id="bardark" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Jump to Japan</a>
 
       <!--Book Dropdown-->
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-padding-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+        <button class="w3-button w3-padding-large w3-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
         <div class="w3-dropdown-content w3-card-4 w3-bar-block containerSegment " id="bookDropdown" style="width:300px">
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Essentials">Essentials</a>
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Travel">Travel</a>
@@ -75,21 +75,16 @@
 
       <!-- Settings & Accessibility Button -->
       <button title="Settings" onclick="document.getElementById('settingsModal').style.display='block'"
-      class="w3-button w3-padding-large w3-right"><i class="fa fa-cog"></i></button>
+      class="w3-button w3-padding-large w3-right w3-large"><i class="fa fa-cog"></i></button>
      
-      <!-- My Account
-      <a href="#" class="w3-bar-item w3-button w3-right w3-padding-large w3-hover-white" title="My Account">
-        <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-      </a> -->
-
     </div>
   </div> 
 
   <!-- Page Container -->
-  <div class="w3-container w3-content" style="max-width:1400px;margin-top:50px">   
+  <div id ="pageContainer" class="w3-content w3-padding-30" style="max-width:1400px;padding-top:50px">   
 
     <!-- 1. Game Information Container -->
-    <div id ="TheContainerSegment" class="w3-container w3-card w3-round w3-margin containerSegment FullContainerSegment"><br>
+    <div id ="TheContainerSegment" class="w3-container w3-card w3-round w3-margin w3-padding-30 containerSegment FullContainerSegment"><br>
 
       <!--Score-->
       <div id="scorebook">
@@ -116,7 +111,7 @@
     <!-- 2. Game Container-->
     <div class="w3-row-padding">
       <div class="w3-col m12">
-        <label id="controlsLabel" class="">Move by using the left, right, and up arrow keys</label>  
+        <label id="controlsLabel" class="w3-small word-wrap">How to play: Move by using the left, right, and up arrow keys</label>  
         <div class="w3-container w3-card w3-round w3-padding containerSegment" id="game-container">
           <svg id="SVG_scene" fill="red" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>         
         </div>
@@ -127,10 +122,8 @@
     <div class="w3-container w3-card w3-round w3-margin containerSegment"><br>
       <!--Powerup Button-->
       <button class="w3-button powerupButton disabled w3-round" id="powerupButton">Charging...</button><br><br>
-
-      <hr class="w3-clear">
-
     </div>
+
   </div>
 
   <!--Script References-->

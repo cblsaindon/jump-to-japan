@@ -12,7 +12,6 @@
 }
 
 
-
 /*
 #ec275f
 #f25477
@@ -27,6 +26,7 @@ from website template
 #bardark {
 background-color: #ca3b93;
 font-family:Georgia, 'Times New Roman', Times, serif;
+font-size: medium;
 } 
 
 #barlight {
@@ -79,7 +79,7 @@ font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 html, body {
-  
+
   height: 100%;
   margin: 0;
   padding: 0;
@@ -101,7 +101,6 @@ html, body {
 
 .containerSegment {
   background-color: var(--containerColor);
-  
 
 }
 
@@ -143,6 +142,12 @@ html, body {
   #TheContainerSegment {
     display: none;
   }
+}
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 400px) {
+  #pageContainer {
+    padding-top: 100px;
+  }
 }
 
