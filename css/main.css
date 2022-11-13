@@ -115,7 +115,6 @@ html, body {
   /*background-color: var(--gameColor);*/
   background-image: url("gamebg_cherryblossom.jpg");
 
-
 }
 
 /* The switch - the box around the slider */
@@ -142,6 +141,15 @@ html, body {
 @media only screen and (max-height: 600px) {
   #TheContainerSegment {
     display: none;
+  }
+}
+
+@media (min-height: 500px) {
+  
+  #SVG_scene
+  {
+  min-height:300px;
+
   }
 }
 

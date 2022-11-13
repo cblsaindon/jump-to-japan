@@ -180,7 +180,7 @@ function createStats() {
   score.setAttributeNS(null,"fill","white"); //FILLCOLOR
   score.setAttributeNS(null,"font-family","helvetica"); //FONT
   score.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
-  score.setAttributeNS(null, "stroke", "black");
+  //score.setAttributeNS(null, "stroke", "white");
   score.setAttributeNS(null, "stroke-width", "0.2%");
   
   score.textContent ="0";  //TEXT
@@ -193,7 +193,7 @@ function createStats() {
   book.setAttributeNS(null,"fill","white"); //FILLCOLOR
   book.setAttributeNS(null,"font-family","helvetica"); //FONT
   book.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
-  book.setAttributeNS(null, "stroke", "black");
+ // book.setAttributeNS(null, "stroke", "white");
   book.setAttributeNS(null, "stroke-width", "0.2%");
 
   book.textContent =bookMenuName;  //TEXT
@@ -214,7 +214,7 @@ function createStats() {
   barText.setAttributeNS(null,"fill","white"); //FILLCOLOR
   barText.setAttributeNS(null,"font-family","helvetica"); //FONT
   barText.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
-  barText.setAttributeNS(null, "stroke", "black");
+  //barText.setAttributeNS(null, "stroke", "white");
   barText.setAttributeNS(null, "stroke-width", "0.2%");
 
 
