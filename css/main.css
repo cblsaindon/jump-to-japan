@@ -102,9 +102,8 @@ html, body {
   overflow: hidden;
 }
 
-.containerSegment {
+.bodyContainer {
   background-color: var(--containerColor);
-
 }
 
 
@@ -112,9 +111,6 @@ html, body {
 {
   min-width:100%;
   min-height:100%;
-  /*background-color: var(--gameColor);*/
-  background-image: url("gamebg_cherryblossom.jpg");
-
 }
 
 /* The switch - the box around the slider */
@@ -139,7 +135,7 @@ html, body {
 
 /* If the screen size is 600px wide or less, hide the element */
 @media only screen and (max-height: 600px) {
-  #TheContainerSegment {
+  #GameScreenContainer {
     display: none;
   }
 }
@@ -153,6 +149,12 @@ html, body {
   }
 }
 
+.confettiContainer { margin: 150px auto; text-align: center; }
+
+.completeBookMenuItem {
+  background-color:#4ec766 !important;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 400px) {
   #pageContainer {
@@ -160,3 +162,7 @@ html, body {
   }
 }
 
+.font-awesome {
+  font-family: FontAwesome;
+  color: #a11483;
+}

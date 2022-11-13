@@ -1,9 +1,16 @@
 
-var SVG; //MAIN SVG ELEMENT
-var w; //WIDTH OF THE SVG ELEMENT
-var h; //HEIGHT OF THE SVG ELEMENT
+//var SVG; //MAIN SVG ELEMENT
+var SVG = document.getElementById("SVG_scene"); //MAIN SVG ELEMENT
+var w = document.getElementById("SVG_scene").clientWidth; //GET WINDOW WIDTH
+var h = document.getElementById("SVG_scene").clientHeight; //GET WINDOW HEIGHT
 var ground; //GROUND ELEMENT
 var score; //SCORE ELEMENT
+
+var additionalText;
+
+var progressWidth = 1;
+var popup = document.getElementById("myPopup");
+var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
 
 var platformTextEnglish; //THE ENGLISH VERSION OF THE WORD
 var platformTextJapanese; //THE JAPANESE VERSION OF THE WORD
@@ -19,31 +26,20 @@ var activeBookWords;
 
 var playerScore = 0;
 var translationToggle = 0;
-var bookMenuName = "Essentials";
-
-var englishFontColor = "#FFF5F9";
-var japaneseFontColor = "#4D222F";
-
+var bookMenuName = "Essentials"; //STARTING BOOK
+var levelCount = 0; //INCREMENTS WITH EACH WORD
+var bookLength = 0;
 var compactMode = true; //CONDENSED VERSION OF GUI FOR SMALLER WINDOWS
-
 
 function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND BOOK DATA
 {
-  SVG = document.getElementById("SVG_scene"); //GET SVG ELEMENT
-
-  w = document.getElementById("SVG_scene").clientWidth; //GET WINDOW WIDTH
-  h = document.getElementById("SVG_scene").clientHeight; //GET WINDOW HEIGHT
-
   platformHeight = h/5;
   createLevel(); //CREATE LEVEL
   score();
 
-
-
-
   //DRAW STATS ON GAME SCREEN IF THE CSS SAYS ITS ENOUGH TO HIDE THE TOP CONTAINER
-  var topContainer = document.getElementById("TheContainerSegment");
-  var isDisplay = window.getComputedStyle(topContainer).display;
+  let topContainer = document.getElementById("GameScreenContainer");
+  let isDisplay = window.getComputedStyle(topContainer).display;
   if (isDisplay == "none")  {
     compactMode = true; 
   } else if (isDisplay == "block") {
@@ -56,7 +52,6 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
     createStats();
   } 
 
-  var popup = document.getElementById("myPopup");
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     popup.textContent = "Tap anywhere in the game screen to Jump";
 
@@ -65,6 +60,7 @@ function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND
    }
    playPopUp();
 }
+
 
 function toggleTranslate() //SWITCHES JAPANESE AND ENGLISH BOOLEAN
 {
@@ -83,8 +79,7 @@ function changePlatformSpeed() //ADJUST WORD SPEED BASED ON THE SETTINGS SLIDER
 
 function createLevel() //DRAWS THE SVG CONTAINER, GROUND, AND WORD
 {
-  var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
-  var level = document.createElementNS(svgNS,"g"); //CREATE A GROUP FOR THE ENTIRE LEVEL
+  let level = document.createElementNS(svgNS,"g"); //CREATE A GROUP FOR THE ENTIRE LEVEL
     
   ground = document.createElementNS(svgNS,"rect"); //CREATE A RECT WHICH REPRESENT THE GROUND
   ground.setAttributeNS(null,"x",0);  //START X
@@ -114,17 +109,17 @@ function getRandomInt(max) //PROVIDES A RANDOM INTEGER FOR RANDOMIZING WORDS
 
 function setPlatform() //DRAWS A NEW RANDOMIZED WORD
 {
-
-  //one
-  client.paginate(
+  client.paginate( //API TO GET ALL WORDS ASSOCIATED TO THE CURRENT BOOK
     q.Match(q.Index("words_by_book"), bookMenuName)
   )
   .each(
      function (res) { 
       
-      var randomInt = getRandomInt(res.length); 
+      let randomInt = getRandomInt(res.length); 
       platformTextJapanese=res[randomInt][0]; //[0][0] is japanese, [0][1] is english
       platformTextEnglish=res[randomInt][1]; //[0][0] is japanese, [0][1] is english
+      
+      bookLength = res.length;
 
       if (translationToggle == 0) { //**** JAPANESE ***//
         platform.textContent = platformTextJapanese; 
@@ -137,9 +132,6 @@ function setPlatform() //DRAWS A NEW RANDOMIZED WORD
   )
   .catch(function (err) { console.log('Error:', err) }
   )
-
-
-//
 
   platform.position.y = (h/10); //SET Y POSITION
   platform.position.x = (w/1.5);//SET RANDOM START POSITION X RIGHT; the higher, the more right ex. 800
@@ -163,17 +155,12 @@ function translateWord() //TOGGLES THE WORD TO JAPANESE OR ENGLISH
 
 function score() //TODO: CURRENTLY ALL ADDITONAL DRAWING. WILL NEED TO UPDATE
 {
-  var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
-  
   score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   score.current = 0; //CURRENT SCORE
-
-
 }
 
 function createStats() {
-  var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
-  
+
   //score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   score.setAttributeNS(null,"x",w*.95); //START X 
   score.setAttributeNS(null,"y",h/5);    //START Y
@@ -217,8 +204,7 @@ function createStats() {
   //barText.setAttributeNS(null, "stroke", "white");
   barText.setAttributeNS(null, "stroke-width", "0.2%");
 
-
-  barText.textContent ="0%";  //TEXT
+  barText.textContent ="$0";  //TEXT
   SVG.appendChild(barText) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
@@ -226,8 +212,8 @@ function updateScore() //INCREASES THE SCORE
 {
   if (powerupActiveOne == false) {
     moveProgress("up");
-    score.current += 0.1; //ADD TO SCORE
-    playerScore =+ 0.1;
+    score.current += 1; //ADD TO SCORE
+    playerScore =+ 1;
   } else {
     moveProgress("down");
     score.current += 10; //ADD TO SCORE
@@ -235,16 +221,22 @@ function updateScore() //INCREASES THE SCORE
 
     }
 
-    if (compactMode) {
-      score.textContent =Math.round(score.current);  //UPDATE SCORE
-    } else {
-      //var scoreLabel = document.getElementById("scoreLabel");
-
-      document.getElementById("scoreLabel").textContent = Math.round(score.current);
-      
-    }
+  drawScore();
 }
 
+function drawScore() {
+  if (compactMode) {
+    score.textContent =Math.round(score.current);  //UPDATE SCORE
+  } else {
+    document.getElementById("scoreLabel").textContent = Math.round(score.current)+" KP";
+  }
+}
+
+function resetScore() {
+  score.current = 0; //ADD TO SCORE
+  playerScore =+ 0;
+  drawScore();
+}
 function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT FALLS OFF THE SCREEN, REPOSITIONS IT BACK TO THE RIGHT
 {
   //UPDATE LEVEL ON EACH FRAME AND GET FRAMETIME "dt"
@@ -255,6 +247,7 @@ function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT
 
   if((platform.position.x + (platform.getBBox().width)) < (w/2)*-1)//BLOCK IS OUT OF SCREEN
   {
+    updateLevelCount();
     activePlatforms -=1;
   }
 

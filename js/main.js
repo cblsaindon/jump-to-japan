@@ -1,16 +1,13 @@
 var time;
 
 
-
-//alert(Time("2022-11-03T02:04:32.278Z"));
-
-//alert(new Date());
 function init()
 {
   initLevel(); //INITIALIZE THE LEVEL STRUCTURE
   initPlayer(); //INITIALIZE THE PLAYER
   initControll(); //INITIALIZE CONTROLLS
-  initBackground();
+  initBackground(); //INITIALIZE BACKGROUND SCROLL
+  initTheme(); //INITIALIZE THEME
   render(); //START RENDER
 }
 

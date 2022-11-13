@@ -19,17 +19,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
   <style>
   html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   </style>
 </head>
+
+
+<div class="confettiContainer w3-hide">
+  <button onclick="startConfetti();" class="btn btn-danger">Start</button>
+  <button onclick="stopConfetti();" class="btn btn-info">Stop</button>
+  <button onclick="toggleConfetti();" class="btn btn-warning">Toggle</button>
+</div>
+
+
+
 
 <body class="light-theme" id="body" onload="init()">
 
   <!--The Settings & Accessibility Modal-->
   <div id="settingsModal" class="w3-modal">
     <div class="w3-modal-content">
-      <div class="w3-container w3-center containerSegment">
+      <div class="w3-container w3-center bodyContainer">
         <span onclick="document.getElementById('settingsModal').style.display='none'"
         class="w3-button w3-display-topright">&times;</span>
 
@@ -69,7 +80,7 @@
       <!--Book Dropdown-->
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-padding-large w3-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-        <div class="w3-dropdown-content w3-card-4 w3-bar-block containerSegment " id="bookDropdown" style="width:300px">
+        <div class="w3-dropdown-content w3-card-4 w3-bar-block bodyContainer" id="bookDropdown" style="width:300px">
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Essentials">Essentials</a>
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Travel">Travel</a>
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Nature">Nature</a>
@@ -87,21 +98,26 @@
   <div id ="pageContainer" class="w3-content w3-padding-30" style="max-width:1400px;padding-top:55px">   
 
     <!-- 1. Game Information Container -->
-    <div id ="TheContainerSegment" class="w3-container w3-card w3-round w3-margin containerSegment FullContainerSegment"><br>
+    <div id ="GameScreenContainer" class="w3-container w3-card w3-round w3-margin bodyContainer"><br>
 
       <!--Score-->
       <div id="scorebook">
+
+        <b>Level:</b>
+        <label id="levelLabel">0</label><br>
+        <b>Knowledge Points:</b>
+        <label id="scoreLabel">0 KP</label><br>
         <b>Book:</b>
-        <label id="bookLabel">Essentials</label>
-        <b>Score:</b>
-        <label id="scoreLabel">0</label>
+        <label id="bookLabel">Essentials</label><br>
+        <label id="pageLabel" class="font-awesome"></label>
+
       </div>
 
 
             
       <!--Progress Bar-->
       <div class="">
-        <div id="myBar" class="w3-container w3-blue w3-round" style="width:1%">1%</div>
+        <div id="myBar" class="w3-container w3-blue w3-round" style="width:0%">0%</div>
       </div>
 
       <hr class="w3-clear">
@@ -116,16 +132,18 @@
     <!-- 2. Game Container-->
     <div class="w3-row-padding">
       <div class="w3-col m12">
-        <div class="w3-container w3-card w3-round w3-padding containerSegment" id="game-container">
+        <div class="w3-container w3-card w3-round w3-padding bodyContainer" id="game-container">
           <svg id="SVG_scene" fill="red" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>         
         </div>
       </div>
     </div>
 
     <!-- 3. Start Powerup Container -->
-    <div class="w3-container w3-card w3-round w3-margin containerSegment"><br>
+    <div class="w3-container w3-card w3-round w3-margin bodyContainer"><br>
       <!--Powerup Button-->
-      <button class="w3-button powerupButton disabled w3-round" id="powerupButton">Charging...</button><br><br>
+      <button class="w3-button powerupButton disabled w3-round" id="powerupButton">Reading...</button>
+      <label id="historyLabel" class=""></label>
+      <br><br>
     </div>
 
   </div>
@@ -141,9 +159,11 @@
   <script src="js/progressBar.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/background.js"></script>
+  <script src="js/page.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb.js"></script>
   <script src="FAUNADB/index.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript"></script>
+  <script src="js/confetti.js"></script>
 
   </script>
   <noscript>You need to enable JavaScript to view the full site.</noscript>

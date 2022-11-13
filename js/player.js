@@ -1,8 +1,7 @@
-var player; //PLAYER ELEMENT
+
+var player = document.createElementNS(svgNS,"g"); //CREATE GROUP FOR THE PLAYER
 var target; //CURRENT PLATFORM
     
-//TODO: CLEAN AND SPLIT CREATE PLAYER FUNCTION. TOO COMPLEX!
-
 function initPlayer()
 {
   createPlayer(); //CREATE THE PLAYER
@@ -10,9 +9,6 @@ function initPlayer()
 
 function createPlayer() //THE PLAYER GETS DRAWN, UPDATED, AND CHECKED FOR COLLISIONS
 {
-  var svgNS = "http://www.w3.org/2000/svg";   //DEFINE THE namespaceURI
-
-  player = document.createElementNS(svgNS,"g"); //CREATE GROUP FOR THE PLAYER
 
   playerBody = document.createElementNS(svgNS,"rect"); //CREATE RECT WHICH REPRESENTS THE PLAYER
   playerBody.setAttributeNS(null,"x",w/5); //START X = CENTER OF SCREEN 
@@ -44,8 +40,9 @@ function intersectRect(r1, r2) {
 function updatePlayer(dt)
 {
   //turn off the powerup if the progress bar is drained
-  if (progressWidth == 0) {
+  if (progressWidth <= 0) {
     togglePowerup(false);
+
   } 
 
   if (powerupActiveOne == true)

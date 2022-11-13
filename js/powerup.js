@@ -15,11 +15,12 @@ function togglePowerupState(isReady) //ALLOWS THE USER TO CLICK OR NOT CLICK THE
 function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
 {
   //only able to activate the powerup feature when the progress bar is full
+  //alert(progressWidth);
   if (isStart == true && progressWidth == 100)
   {
 
     powerupActiveOne = true;
-    document.getElementById("powerupButton").innerHTML = "Powerup Activated!";
+    document.getElementById("powerupButton").innerHTML = "Turning power!";
     powerupReady = false;
     togglePowerupState(powerupReady);
 
@@ -33,6 +34,10 @@ function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
 
   } else if(isStart == false) {
     powerupActiveOne = false;
+    if (pageFlag == "false") {
+      incrementPage();
+    }
+    document.getElementById("powerupButton").innerHTML = "Reading...";
 
     if (compactMode) {
       barImage.setAttributeNS(null,"fill","#2196F3");   //FILLCOLOR
@@ -40,10 +45,6 @@ function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
       var e = document.getElementById("myBar");
       if (e.className.indexOf("w3-amber") != -1) { e.className = e.className.replace(" w3-amber", " w3-blue");}
     }
-
-
-
-    document.getElementById("powerupButton").innerHTML = "Charging...";
   }
 }
 
