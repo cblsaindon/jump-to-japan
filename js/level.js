@@ -238,9 +238,9 @@ function updateScore() //INCREASES THE SCORE
     if (compactMode) {
       score.textContent =Math.round(score.current);  //UPDATE SCORE
     } else {
-      var scoreLabel = document.getElementById("scoreLabel");
+      //var scoreLabel = document.getElementById("scoreLabel");
 
-      scoreLabel = Math.round(score.current);
+      document.getElementById("scoreLabel").textContent = Math.round(score.current);
       
     }
 }
