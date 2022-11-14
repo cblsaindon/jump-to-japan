@@ -231,9 +231,7 @@ function updateScore(direction) //INCREASES THE SCORE
 }
 
 function drawScore() {
-
     document.getElementById("scoreLabel").textContent = Math.round(score.current);
-
 }
 
 function resetScore() {

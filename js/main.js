@@ -11,6 +11,17 @@ function init()
   render(); //START RENDER
 }
 
+function reset()
+{
+  //initLevel(); //INITIALIZE THE LEVEL STRUCTURE
+  initPlayer(); //INITIALIZE THE PLAYER
+  //createLevel();
+  //initControll(); //INITIALIZE CONTROLLS
+  //initBackground(); //INITIALIZE BACKGROUND SCROLL
+  //initTheme(); //INITIALIZE THEME
+  //render(); //START RENDER
+}
+
 
 function render()
 {
