@@ -14,16 +14,26 @@ function incrementPage() {
 
   if (pageCount < bookLength) {
     drawHistory();
-    pages.textContent = pages.textContent + " " + pageIcon;
+
     pageCost = pageCost*pageRate;
     pageCount += 1;
-    pagesCompact.textContent ="Pages: " + pageCount + " of " + bookLength;  //TEXT
+    if (compactMode) {
+      pagesCompact.textContent ="Pages: " + pageCount + " of " + bookLength;  //TEXT
+    } else {
+      pages.textContent = pages.textContent + " " + pageIcon;
+    }
+ 
 
     if (pageCount >= bookLength && pagesComplete == false ) {
       pagesComplete = true;
       completeBook();
-      pages.textContent = pages.textContent + " " + completeIcon;    
-      pagesCompact.textContent ="Book complete!";  //TEXT
+
+      if (compactMode) {
+        pagesCompact.textContent ="Book complete!";  //TEXT
+      } else {
+        pages.textContent = pages.textContent + " " + completeIcon;  
+      }
+
       remainingBookCount -= 1;
       remainingBooks.innerText = remainingBookCount;
     }
@@ -38,8 +48,14 @@ function completeBook() { //DYNAMICALLY COMPLETE BOOK BASED ON SELECTED NAME
 
 function clearPages() { //WIPE PAGE PROGRESS FROM BAR AND PAGECOUNT
   let pages = document.getElementById("pageLabel");
-  pages.textContent = "";    
-  pagesCompact.textContent ="";  //TEXT
+
+  if (compactMode) {
+    pagesCompact.textContent ="";  //TEXT
+  } else {
+    pages.textContent = "";   
+  }
+
+
   pageCount = 0;
   pagesComplete = false;
 }
