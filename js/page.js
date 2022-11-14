@@ -1,7 +1,7 @@
 var pageCount = 0;
 var pageCost = 100; //DEFAULT IS 100
 var pagesComplete = false;
-var pageRate = 1; //DEFAULT IS 2
+var pageRate = 2; //DEFAULT IS 2
 var pageIcon = "\uf0f6"; //FILE
 var completeIcon = "\uf14a" //CHECK MARK SQUARE
 var remainingBookCount = 3; //TODO: PULL FROM FAUNA
