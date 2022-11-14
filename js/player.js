@@ -53,7 +53,7 @@ function updatePlayer(dt)
   if (powerupActiveOne == true)
   {
     player.velocity.x = 15 * (!!keys[39] - !!keys[37]) // right - left
-    platformHeight = h/2;
+    platformHeight = h/3;
     platform.setAttributeNS(null,"font-size", platformHeight);  //WIDTH
   } else {
     player.velocity.x = playerMovementSpeed * (!!keys[39] - !!keys[37]) // right - left
@@ -138,14 +138,23 @@ function updatePlayer(dt)
     player.velocity.y = 0; //DEFAULT 0
   }
 
-  if (player.onFloor && autoJump == true) { //TODO: REFERENCE THE GROUND
-    player.velocity.y = -10 // Acceleration due to gravity JUMP SPEED
+  if (autoJump == true) {
+
+    if (player.onFloor) { //TODO: REFERENCE THE GROUND // Acceleration due to gravity JUMP SPEED
+      player.velocity.y = -20;
+    } else if (player.position.y <= 0) {//CHECK COLLISION FOR THE ROOF
+      player.position = {
+        x:player.position.x,y:0 //DEFAULT 0
+      };
+      player.velocity.y += 20 // Acceleration due to gravity DETERMINES FALL SPEED
+    }
+
   }
+
 
   if(keys[38] && player.onFloor) //JUMP
   {
-
-    player.velocity.y = playerJumpSpeed // Acceleration due to gravity JUMP SPEED
+    player.velocity.y = playerJumpSpeed; // Acceleration due to gravity JUMP SPEED
     target = null;
   }
 }

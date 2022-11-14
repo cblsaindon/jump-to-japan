@@ -33,6 +33,7 @@ var compactMode = true; //CONDENSED VERSION OF GUI FOR SMALLER WINDOWS
 
 function initLevel() //INITIALIZES THE SVG ELEMENT DIMENSIONS, LEVEL, SCORE, AND BOOK DATA
 {
+
   platformHeight = h/5;
   createLevel(); //CREATE LEVEL
   score();

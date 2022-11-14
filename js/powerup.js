@@ -24,6 +24,11 @@ function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
     powerupReady = false;
     togglePowerupState(powerupReady);
 
+    //INCREASE PLATFORM/WORD SPEED
+    platformSpeed = 30;
+    platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
+    autoJump = true;
+
     var e = document.getElementById("myBar");
     if (compactMode) {
       barImage.setAttributeNS(null,"fill","#FCC201");   //FILLCOLOR
@@ -37,6 +42,8 @@ function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
     if (pageFlag == "false") {
       incrementPage();
     }
+    changePlatformSpeed();
+    autoJump = false;
     document.getElementById("powerupButton").innerHTML = "Reading...";
 
     if (compactMode) {

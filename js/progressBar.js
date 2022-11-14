@@ -7,11 +7,7 @@ var tempDollars = 0;
 function moveProgress(direction,bonus) //FILLS IN OR SUBTRACTS FROM THE PROGRESS BAR DEPENDING ON THE POWER-UP STATE
 {
 
-    //var elem = document.getElementById("myBar").visibility = "visible";
-
     var elem = document.getElementById("myBar");
-    
-    //var direction = "up";
 
     if (direction == "up" && progressWidth >= 100) {
       //nothing
