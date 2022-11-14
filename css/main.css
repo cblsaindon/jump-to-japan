@@ -30,7 +30,8 @@ font-size: medium;
 } 
 
 #barlight {
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family:'Tangerine', Georgia, 'Times New Roman', Times, serif;
+  
 }
 
 .light-theme {
@@ -149,7 +150,7 @@ html, body {
   }
 }
 
-.confettiContainer { margin: 150px auto; text-align: center; }
+.confettiContainer { text-align: center; }
 
 .completeBookMenuItem {
   background-color:#4ec766 !important;

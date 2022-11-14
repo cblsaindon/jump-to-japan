@@ -80,7 +80,7 @@ function changePlatformSpeed() //ADJUST WORD SPEED BASED ON THE SETTINGS SLIDER
 function createLevel() //DRAWS THE SVG CONTAINER, GROUND, AND WORD
 {
   let level = document.createElementNS(svgNS,"g"); //CREATE A GROUP FOR THE ENTIRE LEVEL
-    
+
   ground = document.createElementNS(svgNS,"rect"); //CREATE A RECT WHICH REPRESENT THE GROUND
   ground.setAttributeNS(null,"x",0);  //START X
   ground.setAttributeNS(null,"y",h-10);  //START Y
@@ -93,6 +93,7 @@ function createLevel() //DRAWS THE SVG CONTAINER, GROUND, AND WORD
   platform.setAttributeNS(null,"x",w/2); //START X -> STARTS OFFSCREEN
   platform.setAttributeNS(null,"y",h/2);    //START Y
   platform.setAttributeNS(null,"font-size", platformHeight);  //WIDTH
+  platform.setAttributeNS(null,"rotate",4); //ADDS A FUN TWIST TO WORDS
 
   platform.position = { x: 0, y: 0 }; //TRANSFORM VALUE OF THE PLATFORM
   platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
@@ -116,6 +117,11 @@ function setPlatform() //DRAWS A NEW RANDOMIZED WORD
      function (res) { 
       
       let randomInt = getRandomInt(res.length); 
+      let randomIntHeight = getRandomInt(50) + 1;
+      let heightVariation = (randomIntHeight+(h/3));
+
+      platform.setAttributeNS(null,"y",heightVariation);    //START Y
+ 
       platformTextJapanese=res[randomInt][0]; //[0][0] is japanese, [0][1] is english
       platformTextEnglish=res[randomInt][1]; //[0][0] is japanese, [0][1] is english
       
@@ -128,6 +134,7 @@ function setPlatform() //DRAWS A NEW RANDOMIZED WORD
         platform.textContent = platformTextEnglish; 
         platform.setAttributeNS(null,"fill",englishFontColor); //FILLCOLOR
       }
+      
     }
   )
   .catch(function (err) { console.log('Error:', err) }
@@ -153,11 +160,7 @@ function translateWord() //TOGGLES THE WORD TO JAPANESE OR ENGLISH
   }
 }
 
-function score() //TODO: CURRENTLY ALL ADDITONAL DRAWING. WILL NEED TO UPDATE
-{
-  score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
-  score.current = 0; //CURRENT SCORE
-}
+
 
 function createStats() {
 
@@ -209,36 +212,7 @@ function createStats() {
   SVG.appendChild(barText) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
-function updateScore(direction) //INCREASES THE SCORE
-{
-  let bonus = 1;
-  if (direction == "UP") {
-    bonus = 5;
-  }
 
-  if (powerupActiveOne == false) {
-    moveProgress("up",bonus);
-    score.current += bonus; //ADD TO SCORE
-    playerScore =+ bonus;
-  } else {
-    moveProgress("down",bonus);
-    score.current += bonus*10; //ADD TO SCORE
-    playerScore =+ bonus*10;
-
-    }
-
-  drawScore();
-}
-
-function drawScore() {
-    document.getElementById("scoreLabel").textContent = Math.round(score.current);
-}
-
-function resetScore() {
-  score.current = 0; //ADD TO SCORE
-  playerScore =+ 0;
-  drawScore();
-}
 function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT FALLS OFF THE SCREEN, REPOSITIONS IT BACK TO THE RIGHT
 {
   //UPDATE LEVEL ON EACH FRAME AND GET FRAMETIME "dt"
@@ -250,11 +224,13 @@ function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT
   if((platform.position.x + (platform.getBBox().width)) < (w/2)*-1)//BLOCK IS OUT OF SCREEN
   {
     updateLevelCount();
-    drawHistory();
+    //drawHistory();
     activePlatforms -=1;
   }
 
   platform.position.x -= platform.velocity.x * dt * 60/1000;//GET THE NEW X POSITION
   platform.position.y -= platform.velocity.y * dt * 60/1000;//GET THE NEW X POSITION
+
   platform.setAttribute("transform", "translate(" + platform.position.x + " "+ platform.position.y +" )");//TRANSFORM TO THE NEXT X POSITION   
+
 }

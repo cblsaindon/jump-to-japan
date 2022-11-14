@@ -1,5 +1,5 @@
 var pageCount = 0;
-var pageCost = 100; //DEFAULT IS 100
+var pageCost = 50; //DEFAULT IS 100
 var pagesComplete = false;
 var pageRate = 1.2; //DEFAULT IS 2
 var pageIcon = "\uf0f6"; //FILE
@@ -21,10 +21,11 @@ function incrementPage() {
       pages.textContent = pages.textContent + " " + pageIcon;
     }
  
-
     if (pageCount >= bookLength && pagesComplete == false ) {
       pagesComplete = true;
       completeBook();
+      popup.textContent = "Book complete! Choose another from the top menu.";
+      playPopUp();
 
       if (compactMode) {
         pagesCompact.textContent ="Book complete!";  //TEXT
@@ -68,5 +69,5 @@ function clearPages() { //WIPE PAGE PROGRESS FROM BAR AND PAGECOUNT
 
 function drawHistory() {
   let history = document.getElementById("historyLabel");
-  history.textContent = "Last word: " + platformTextJapanese + " | " +  platformTextEnglish;
+  history.textContent = "History: " + platformTextJapanese + " | " +  platformTextEnglish;
 }

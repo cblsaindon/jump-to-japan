@@ -27,15 +27,10 @@
 </head>
 
 
-<div class="confettiContainer w3-hide">
-  <button onclick="startConfetti();" class="btn btn-danger">Start</button>
-  <button onclick="stopConfetti();" class="btn btn-info">Stop</button>
-  <button onclick="toggleConfetti();" class="btn btn-warning">Toggle</button>
-</div>
+
 
 
 <body class="light-theme" id="body" onload="init()">
-
   <!--The Settings & Accessibility Modal-->
   <div id="settingsModal" class="w3-modal">
     <div class="w3-modal-content">
@@ -144,7 +139,7 @@
     <div class="w3-container w3-card w3-round w3-margin bodyContainer"><br>
       <!--Powerup Button-->
       <button class="w3-button powerupButton disabled w3-round" id="powerupButton">Reading...</button>
-      <label id="historyLabel" class=""></label>
+      <label id="historyLabel" class="w3-small"></label>
       <br><br>
     </div>
 
@@ -162,10 +157,10 @@
   <script src="js/theme.js"></script>
   <script src="js/background.js"></script>
   <script src="js/page.js"></script>
+  <script src="js/score.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb.js"></script>
   <script src="FAUNADB/index.js"></script>
   <script type="text/javascript"></script>
-  <script src="js/confetti.js"></script>
 
   </script>
   <noscript>You need to enable JavaScript to view the full site.</noscript>

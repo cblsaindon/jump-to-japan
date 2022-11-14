@@ -2,6 +2,12 @@
 var player = document.createElementNS(svgNS,"g"); //CREATE GROUP FOR THE PLAYER
 var target; //CURRENT PLATFORM
     
+var playerJumpSpeed = -10; //DEFAULT -10
+var playerFallSpeed = 0.1; //DEFAULT 0.1
+var playerMovementSpeed = 5; //DEFAULT 5
+
+var autoJump = false;
+
 function initPlayer()
 {
   createPlayer(); //CREATE THE PLAYER
@@ -50,15 +56,14 @@ function updatePlayer(dt)
     platformHeight = h/2;
     platform.setAttributeNS(null,"font-size", platformHeight);  //WIDTH
   } else {
-    player.velocity.x = 4 * (!!keys[39] - !!keys[37]) // right - left
+    player.velocity.x = playerMovementSpeed * (!!keys[39] - !!keys[37]) // right - left
     platformHeight = h/5;
     platform.setAttributeNS(null,"font-size", platformHeight);  //WIDTH
   }
 
-  player.velocity.y += 0.1 // Acceleration due to gravity
+  player.velocity.y += playerFallSpeed // Acceleration due to gravity DETERMINES FALL SPEED
     
   var nextY = player.position.y + player.velocity.y * dt * 60/1000; //GET THE NEXT POSSIBLE Y POSITION
-  var nextX = player.position.x + player.velocity.x * dt * 60/1000; //GET THE NEXT POSSIBLE Y POSITION
      
   var BB_Player = player.getBoundingClientRect(); //GET PLAYER BOUNDING BOX
   BB_Player.bottom += player.velocity.y * dt * 60/1000;
@@ -103,7 +108,11 @@ function updatePlayer(dt)
 
   if(player.position.y <= 0) //CHECK COLLISION FOR THE ROOF
   {
-    player.position = {x:player.position.x,y:0};
+
+    player.position = {
+      x:player.position.x,y:0 //DEFAULT 0
+    };
+    //player.velocity.y = playerFallSpeed // Acceleration due to gravity JUMP SPEED
   }
 
   var leftEdge = (-1*(w/5)); //THE LEFT EDGE OF SVG ELEMENT
@@ -123,12 +132,20 @@ function updatePlayer(dt)
 
   player.onFloor = (nextY > player.position.y);
 
-  if (nextY != player.position.y) {player.velocity.y = 0};
+
+  if (nextY != player.position.y) { //WHAT HAPPENS WHEN PLAYER IS ON THE FLOOR
+    //alert(nextY);
+    player.velocity.y = 0; //DEFAULT 0
+  }
+
+  if (player.onFloor && autoJump == true) { //TODO: REFERENCE THE GROUND
+    player.velocity.y = -10 // Acceleration due to gravity JUMP SPEED
+  }
 
   if(keys[38] && player.onFloor) //JUMP
   {
 
-    player.velocity.y = -10 // Acceleration due to gravity
+    player.velocity.y = playerJumpSpeed // Acceleration due to gravity JUMP SPEED
     target = null;
   }
 }
