@@ -161,18 +161,19 @@ function score() //TODO: CURRENTLY ALL ADDITONAL DRAWING. WILL NEED TO UPDATE
 
 function createStats() {
 
-  //score = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
-  score.setAttributeNS(null,"x",w*.95); //START X 
-  score.setAttributeNS(null,"y",h/5);    //START Y
-  score.setAttributeNS(null,"fill","white"); //FILLCOLOR
-  score.setAttributeNS(null,"font-family","helvetica"); //FONT
-  score.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
-  //score.setAttributeNS(null, "stroke", "white");
-  score.setAttributeNS(null, "stroke-width", "0.2%");
   
-  score.textContent ="0";  //TEXT
+  pagesCompact = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
+  pagesCompact.setAttributeNS(null,"x",w*.8); //START X 
+  pagesCompact.setAttributeNS(null,"y",h/5);    //START Y
+  pagesCompact.setAttributeNS(null,"fill","white"); //FILLCOLOR
+  pagesCompact.setAttributeNS(null,"font-family","helvetica"); //FONT
+  pagesCompact.setAttributeNS(null,"font-weight","bold"); //FONT-WEIGHT
+  pagesCompact.setAttributeNS(null, "stroke-width", "0.2%");
+  
+  pagesCompact.textContent ="";  //TEXT
 
-  SVG.appendChild(score) //APPEND LEVEL TO THE SVG ELEMENT
+  SVG.appendChild(pagesCompact) //APPEND LEVEL TO THE SVG ELEMENT
+
 
   book = document.createElementNS(svgNS,"text"); //CREATE A RTEXT NODE
   book.setAttributeNS(null,"x",w/50); //START X 
@@ -204,7 +205,7 @@ function createStats() {
   //barText.setAttributeNS(null, "stroke", "white");
   barText.setAttributeNS(null, "stroke-width", "0.2%");
 
-  barText.textContent ="$0";  //TEXT
+  barText.textContent ="0%";  //TEXT
   SVG.appendChild(barText) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
@@ -225,11 +226,9 @@ function updateScore() //INCREASES THE SCORE
 }
 
 function drawScore() {
-  if (compactMode) {
-    score.textContent =Math.round(score.current);  //UPDATE SCORE
-  } else {
-    document.getElementById("scoreLabel").textContent = Math.round(score.current)+" KP";
-  }
+
+    document.getElementById("scoreLabel").textContent = Math.round(score.current);
+
 }
 
 function resetScore() {

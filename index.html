@@ -67,6 +67,11 @@
             <span class="slider round"></span>
           </label>
         </div>  
+
+        <b>Word Count: </b>
+        <label id="levelLabel">0</label><br>
+        <b>Score: </b>
+        <label id="scoreLabel">0</label><br>
         
       </div>
     </div>
@@ -79,7 +84,8 @@
 
       <!--Book Dropdown-->
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-padding-large w3-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+        <button class="w3-button w3-padding-large w3-large" title="Books" id="bookMenuButton"><i class="fa fa-book"></i>
+          <span id ="remainingBooks" class="w3-badge w3-right w3-small w3-green">3</span></button>     
         <div class="w3-dropdown-content w3-card-4 w3-bar-block bodyContainer" id="bookDropdown" style="width:300px">
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Essentials">Essentials</a>
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Travel">Travel</a>
@@ -103,10 +109,6 @@
       <!--Score-->
       <div id="scorebook">
 
-        <b>Level:</b>
-        <label id="levelLabel">0</label><br>
-        <b>Knowledge Points:</b>
-        <label id="scoreLabel">0 KP</label><br>
         <b>Book:</b>
         <label id="bookLabel">Essentials</label><br>
         <label id="pageLabel" class="font-awesome"></label>

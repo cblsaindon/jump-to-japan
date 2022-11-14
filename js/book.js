@@ -25,6 +25,7 @@ Array.from(bookMenuItems).forEach( bookMenuItem => { //TRIGGERS FOR ALL BOOK MEN
   bookMenuItem.addEventListener('click', (e) => {
     bookMenuName = e.target.id;
     popup.textContent = "Book changed to " + bookMenuName;
+    clearPages();
     if (compactMode) {
       book.textContent = bookMenuName; //ADD TO SCORE
     } else {

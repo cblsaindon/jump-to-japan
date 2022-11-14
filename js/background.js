@@ -3,6 +3,7 @@ var nextBackgroundX = 0;
 var incrmentalBackgroundX = 1;
 
 function initBackground() {
+    //SVG.style.backgroundPositionY = "-350px";
     SVG.style.backgroundPositionY = "-350px";
 }
 
