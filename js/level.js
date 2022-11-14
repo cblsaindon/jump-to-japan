@@ -209,16 +209,21 @@ function createStats() {
   SVG.appendChild(barText) //APPEND LEVEL TO THE SVG ELEMENT
 }
 
-function updateScore() //INCREASES THE SCORE
+function updateScore(direction) //INCREASES THE SCORE
 {
+  let bonus = 1;
+  if (direction == "UP") {
+    bonus = 5;
+  }
+
   if (powerupActiveOne == false) {
-    moveProgress("up");
-    score.current += 1; //ADD TO SCORE
-    playerScore =+ 1;
+    moveProgress("up",bonus);
+    score.current += bonus; //ADD TO SCORE
+    playerScore =+ bonus;
   } else {
-    moveProgress("down");
-    score.current += 10; //ADD TO SCORE
-    playerScore =+ 10;
+    moveProgress("down",bonus);
+    score.current += bonus*10; //ADD TO SCORE
+    playerScore =+ bonus*10;
 
     }
 
@@ -247,6 +252,7 @@ function updateLevel(dt) //MOVES THE WORD PLATFORM FROM RIGHT TO LEFT, AND IF IT
   if((platform.position.x + (platform.getBBox().width)) < (w/2)*-1)//BLOCK IS OUT OF SCREEN
   {
     updateLevelCount();
+    drawHistory();
     activePlatforms -=1;
   }
 

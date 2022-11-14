@@ -42,7 +42,6 @@ function updatePlayer(dt)
   //turn off the powerup if the progress bar is drained
   if (progressWidth <= 0) {
     togglePowerup(false);
-
   } 
 
   if (powerupActiveOne == true)
@@ -73,7 +72,7 @@ function updatePlayer(dt)
     if(player.velocity.y < 0 && !player.onFloor)   //IF PLAYER IS JUMPING, CHANGE TO ENGLISH
     {
       player.velocity.y = (BB_Platform.bottom - BB_Player.top);
-      updateScore();
+      updateScore("UP");
       translateWord();
     }
 
@@ -81,7 +80,7 @@ function updatePlayer(dt)
   else if(player.velocity.y > 0) //IF PLAYER IS FALLING, CHANGE TO ENGLISH
   {
     player.velocity.y=(BB_Platform.top - BB_Player.bottom)/4;
-    updateScore();
+    updateScore("DOWN");
     translateWord();
   }
   } else {platform.setAttributeNS(null, "stroke", "none");}
@@ -94,7 +93,6 @@ function updatePlayer(dt)
 
     if(ground.position.y > 100) //PLAYER IS OFFSCREEN
     {
-
       player.position = {x:0,y:0};
       ground.position = {x:0,y:0};
     }

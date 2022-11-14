@@ -1,7 +1,7 @@
 var pageCount = 0;
 var pageCost = 100; //DEFAULT IS 100
 var pagesComplete = false;
-var pageRate = 2; //DEFAULT IS 2
+var pageRate = 1.2; //DEFAULT IS 2
 var pageIcon = "\uf0f6"; //FILE
 var completeIcon = "\uf14a" //CHECK MARK SQUARE
 var remainingBookCount = 3; //TODO: PULL FROM FAUNA
@@ -9,11 +9,9 @@ var remainingBookCount = 3; //TODO: PULL FROM FAUNA
 function incrementPage() {
 
   let pages = document.getElementById("pageLabel");
-
   let remainingBooks = document.getElementById("remainingBooks");
 
   if (pageCount < bookLength) {
-    drawHistory();
 
     pageCost = pageCost*pageRate;
     pageCount += 1;
@@ -51,11 +49,19 @@ function clearPages() { //WIPE PAGE PROGRESS FROM BAR AND PAGECOUNT
 
   if (compactMode) {
     pagesCompact.textContent ="";  //TEXT
+
+    barText.textContent = "0%";
+    barImage.setAttributeNS(null,"width",1);  //WIDTH
+
   } else {
     pages.textContent = "";   
+
+    let elem = document.getElementById("myBar");
+    elem.style.width = "1%";
+    elem.innerHTML = '0%';
   }
-
-
+  
+  pageCost = 100; //DEFAULT IS 100
   pageCount = 0;
   pagesComplete = false;
 }
