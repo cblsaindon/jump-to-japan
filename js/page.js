@@ -5,6 +5,7 @@ var pageRate = 1.2; //DEFAULT IS 2
 var pageIcon = "\uf0f6"; //FILE
 var completeIcon = "\uf14a" //CHECK MARK SQUARE
 var remainingBookCount = 3; //TODO: PULL FROM FAUNA
+var gameComplete = false;
 
 function incrementPage() {
 
@@ -40,11 +41,31 @@ function incrementPage() {
   }
   pageFlag = "true";
 
-  if (remainingBookCount == 0) {
+  if (remainingBookCount == 0 && gameComplete == false) {
+    gameComplete = true;
     pages.textContent = "Thanks for playing! Achievement Unlocked: Book Slayer";
     popup.textContent = "Congratulations! You have beaten the game and are ready for Japan :)";
     playPopUp();
+    addLeaderboardEntry();
   }
+}
+
+function addLeaderboardEntry() {
+// ADD A LOGIN ENTRY TO THE EVENT HISTORY
+
+let chosenUsername = document.getElementById("usrname").value;
+
+let createP = client.query(
+  q.Create(q.Collection('EventHistory'), { data: { 
+    event: 'gamefinish',
+    createdDate: new Date().toGMTString(),
+    score: score.current,
+    username: chosenUsername
+  } })
+)
+.then(function (res) { console.log('Result:', res) })
+.catch(function (err) { console.log('Error:', err) })
+
 }
 
 function completeBook() { //DYNAMICALLY COMPLETE BOOK BASED ON SELECTED NAME

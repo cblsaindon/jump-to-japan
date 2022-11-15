@@ -8,10 +8,12 @@ let client = new faunadb.Client({
 })
 
 // ADD A LOGIN ENTRY TO THE EVENT HISTORY
+let chosenUsername = document.getElementById("usrname").value;
 let createP = client.query(
   q.Create(q.Collection('EventHistory'), { data: { 
     event: 'login',
-    createdDate: new Date().toGMTString()
+    createdDate: new Date().toGMTString(),
+    username: chosenUsername
     //toGMTString
   } })
 )
