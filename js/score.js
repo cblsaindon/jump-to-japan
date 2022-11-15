@@ -6,19 +6,19 @@ function score() //TODO: CURRENTLY ALL ADDITONAL DRAWING. WILL NEED TO UPDATE
 
 function updateScore(direction) //INCREASES THE SCORE
 {
-  let bonus = 1;
+  let bonus = 10;
   if (direction == "UP") {
-    bonus = 5;
+    bonus = 10; //DEFAULT 10
   }
 
   if (powerupActiveOne == false) {
-    moveProgress("up",bonus);
-    score.current += bonus; //ADD TO SCORE
-    playerScore =+ bonus;
+    moveProgress("up",1);
+    score.current += 1; //ADD TO SCORE DEFAULT 1
+    playerScore =+ 1;
   } else {
     moveProgress("down",bonus);
-    score.current += bonus*10; //ADD TO SCORE
-    playerScore =+ bonus*10;
+    score.current += bonus; //ADD TO SCORE
+    playerScore =+ bonus;
 
     }
 

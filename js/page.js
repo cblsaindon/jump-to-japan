@@ -34,10 +34,17 @@ function incrementPage() {
       }
 
       remainingBookCount -= 1;
+
       remainingBooks.innerText = remainingBookCount;
     }
   }
   pageFlag = "true";
+
+  if (remainingBookCount == 0) {
+    pages.textContent = "Thanks for playing! Achievement Unlocked: Book Slayer";
+    popup.textContent = "Congratulations! You have beaten the game and are ready for Japan :)";
+    playPopUp();
+  }
 }
 
 function completeBook() { //DYNAMICALLY COMPLETE BOOK BASED ON SELECTED NAME

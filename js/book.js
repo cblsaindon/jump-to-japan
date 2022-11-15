@@ -1,3 +1,7 @@
+var activeBookNumber = 1;
+var activeBookWords;
+var bookMenuName = "Essentials"; //STARTING BOOK
+var bookLength = 0;
 
 //BOOK MENU OPTION LISENTER
 const bookMenuItems = document.querySelectorAll(".bookMenuItem");

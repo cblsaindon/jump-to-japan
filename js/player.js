@@ -47,7 +47,7 @@ function updatePlayer(dt)
 {
   //turn off the powerup if the progress bar is drained
   if (progressWidth <= 0) {
-    togglePowerup(false);
+    setPowerupEvent(false);
   } 
 
   if (powerupActiveOne == true)
@@ -78,7 +78,7 @@ function updatePlayer(dt)
     {
       player.velocity.y = (BB_Platform.bottom - BB_Player.top);
       updateScore("UP");
-      translateWord();
+      translatePlatform();
     }
 
 
@@ -86,7 +86,7 @@ function updatePlayer(dt)
   {
     player.velocity.y=(BB_Platform.top - BB_Player.bottom)/4;
     updateScore("DOWN");
-    translateWord();
+    translatePlatform();
   }
   } else {platform.setAttributeNS(null, "stroke", "none");}
 

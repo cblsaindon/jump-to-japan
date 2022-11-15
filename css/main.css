@@ -7,24 +7,14 @@
     /*--lightcolorone: #ffffff;*/
     --darkcolorone: #4e4e4e;
     --darkcolortwo: #264868;
+    --darkgrey: #121212;
     --mediumcolortwo:#5ea8ed;
     --darkgreen: #264868;
 }
 
 
-/*
-#ec275f
-#f25477
-#ffa7a6
-#ffdcdc
-#d4e0ee
-
-from website template
-#deefff
-*/
-
 #bardark {
-background-color: #2F4858;
+
 font-family:Georgia, 'Times New Roman', Times, serif;
 font-size: medium;
 } 
@@ -49,13 +39,13 @@ font-size: medium;
 }
 
 .dark-theme {
-  --bg: var(--black);
+  --bg: var(--darkgrey);
   --fontColor: var(--white);
   --btnBg: var(--white);
   --btnBgEnabled: var(--gold);
   --btnBgDisabled: var(--black);
   --btnFontColor: var(--black);
-  --containerColor: var(--darkcolorone);
+  --containerColor: var(--black);
   --gameColor: var(--darkcolortwo);
 }
 

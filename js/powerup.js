@@ -1,8 +1,7 @@
 var powerupActiveOne = false;
+const powerupButton = document.querySelector("#powerupButton");
 
-//TODO: ARGUMENTS NEED TO BE FIXED, CONFUSING
-
-function togglePowerupState(isReady) //ALLOWS THE USER TO CLICK OR NOT CLICK THE POWER-UP DEPENDING ON THE CHARGING STATUS
+function setPowerupButton(powerupReady) //ALLOWS THE USER TO CLICK OR NOT CLICK THE POWER-UP DEPENDING ON THE CHARGING STATUS
 {
   var e = document.getElementById("powerupButton");
   if (powerupReady == true) { //make sure it can be clicked and give it a good format
@@ -12,52 +11,54 @@ function togglePowerupState(isReady) //ALLOWS THE USER TO CLICK OR NOT CLICK THE
   }
 }
 
-function togglePowerup(isStart) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
+powerupButton.addEventListener('click', () =>
 {
-  //only able to activate the powerup feature when the progress bar is full
-  //alert(progressWidth);
-  if (isStart == true && progressWidth == 100)
-  {
-
-    powerupActiveOne = true;
-    document.getElementById("powerupButton").innerHTML = "Turning power!";
-    powerupReady = false;
-    togglePowerupState(powerupReady);
-
-    //INCREASE PLATFORM/WORD SPEED
-    platformSpeed = 30;
-    platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
-    autoJump = true;
-
-    var e = document.getElementById("myBar");
-    if (compactMode) {
-      barImage.setAttributeNS(null,"fill","#FCC201");   //FILLCOLOR
-    } else {
-      if (e.className.indexOf("w3-blue") != -1) { e.className = e.className.replace(" w3-blue", " w3-amber");}
-    }
+  setPowerupEvent(true);
+});  
 
 
-  } else if(isStart == false) {
-    powerupActiveOne = false;
-    if (pageFlag == "false") {
-      incrementPage();
-    }
-    changePlatformSpeed();
-    autoJump = false;
-    document.getElementById("powerupButton").innerHTML = "Reading...";
+function setPowerupEvent(powerupReady) //ACTIVATES OR DEACTIVATES POWER-UP FEATURES
+{
+  if (powerupReady == true && progressWidth == 100) {
+    startPowerupEvent();
 
-    if (compactMode) {
-      barImage.setAttributeNS(null,"fill","#2196F3");   //FILLCOLOR
-    } else {
-      var e = document.getElementById("myBar");
-      if (e.className.indexOf("w3-amber") != -1) { e.className = e.className.replace(" w3-amber", " w3-blue");}
-    }
+  } else if(powerupReady == false) {
+    endPowerupEvent();
+
   }
 }
 
-const powerupButton = document.querySelector("#powerupButton");
+function startPowerupEvent() {
+  powerupActiveOne = true;
+  document.getElementById("powerupButton").innerHTML = "Turning power!";
+  setPowerupButton(false);
 
-powerupButton.addEventListener('click', () =>
-{
-  togglePowerup(true);
-});  
+  platformSpeed = 30;
+  platform.velocity = { x: platformSpeed, y: 0 }; //VELOCITY OF THE PLATFORM
+  autoJump = true;
+
+  var e = document.getElementById("myBar");
+  if (compactMode) {
+    barImage.setAttributeNS(null,"fill","#FCC201");   //FILL BAR COLOR
+  } else {
+    if (e.className.indexOf("w3-blue") != -1) { e.className = e.className.replace(" w3-blue", " w3-amber");}
+  }
+}
+
+function endPowerupEvent() {
+  powerupActiveOne = false;
+  if (pageFlag == "false") {
+    incrementPage();
+  }
+  changePlatformSpeed();
+  autoJump = false;
+  document.getElementById("powerupButton").innerHTML = "Reading...";
+
+  if (compactMode) {
+    barImage.setAttributeNS(null,"fill","#2196F3");   //FILLCOLOR
+  } else {
+    var e = document.getElementById("myBar");
+    if (e.className.indexOf("w3-amber") != -1) { e.className = e.className.replace(" w3-amber", " w3-blue");}
+  }
+}
+
