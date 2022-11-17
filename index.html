@@ -27,9 +27,6 @@
 </head>
 
 
-
-
-
 <body class="light-theme" id="body" onload="init()">
   <!--The Settings & Accessibility Modal-->
   <div id="settingsModal" class="w3-modal">
@@ -56,13 +53,33 @@
         </div>  
 
         <h4>Stats</h4>
-        Name: <input type="text" id="usrname" value="Anonymous Mongoose"><br><br> <!--PANDA IS TEST, MONGOOSE IS PRODUCTION-->
+        Name: <input type="text" id="usrname" value="Anonymous Panda"><br><br> <!--PANDA IS TEST, MONGOOSE IS PRODUCTION-->
         <b>Word count: </b>
         <label id="levelLabel">0</label><br>
         <b>Score: </b>
         <label id="scoreLabel">0</label><br>
         <button class="w3-button w3-round" onclick=reset()>Reset Character</button>
         
+      </div>
+    </div>
+  </div>
+
+  <!--The Help Modal-->
+  <div id="helpModal" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container w3-center bodyContainer">
+        <span onclick="document.getElementById('helpModal').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+
+          <h4>Controls</h4>
+          Use the left, right, and up arrow keys to move
+          <h4>How to Play</h4>
+
+          1) Jump on or under the words to fill the progress bar<br>
+          2) When the progress bar is filled, click the bottom button and fly to the next page<br>
+          3) Collect enough pages to fill a book<br>
+          4) Complete each book to win!<br><br>
+
       </div>
     </div>
   </div>
@@ -82,6 +99,10 @@
           <a href="#" class="w3-bar-item w3-button bookMenuItem" id="Nature">Nature</a>
         </div>
       </div>
+
+      <!-- Help Button -->
+      <button title="Help" onclick="document.getElementById('helpModal').style.display='block'"
+      class="w3-button w3-padding-large w3-right w3-large"><i class="fa fa-question"></i></button>
 
       <!-- Settings & Accessibility Button -->
       <button title="Settings" onclick="document.getElementById('settingsModal').style.display='block'"
